@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import HomeHero from '@/components/HomeHero';
+import SimpleHomeHero from '@/components/SimpleHomeHero';
 
 export const metadata: Metadata = {
   title: 'Zenematic | Home',
@@ -36,7 +36,7 @@ const featuredWork = [
 export default function Home() {
   return (
     <main className="min-h-screen">
-      <HomeHero />
+      <SimpleHomeHero />
       
       {/* Featured Work Section */}
       <section className="py-24 bg-zen-olive">
