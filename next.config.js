@@ -8,6 +8,9 @@ const nextConfig = {
   experimental: {
     esmExternals: false
   },
+  distDir: 'out',
+  assetPrefix: '',
+  basePath: '',
   webpack: (config, { isServer }) => {
     if (!isServer) {
       config.resolve.fallback = {
