@@ -8,6 +8,7 @@ export default function PageTransitionLayout({ children }: { children: React.Rea
   const pathname = usePathname();
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [currentPhrase, setCurrentPhrase] = useState('');
+  const [isMounted, setIsMounted] = useState(false);
 
   const loadingPhrases = [
     "Frame by Frame",
@@ -23,25 +24,31 @@ export default function PageTransitionLayout({ children }: { children: React.Rea
   ];
 
   useEffect(() => {
-    setIsTransitioning(true);
-    const timeout = setTimeout(() => setIsTransitioning(false), 1500);
-    return () => clearTimeout(timeout);
-  }, [pathname]);
+    setIsMounted(true);
+  }, []);
 
   useEffect(() => {
-    if (isTransitioning) {
+    if (isMounted) {
+      setIsTransitioning(true);
+      const timeout = setTimeout(() => setIsTransitioning(false), 1500);
+      return () => clearTimeout(timeout);
+    }
+  }, [pathname, isMounted]);
+
+  useEffect(() => {
+    if (isTransitioning && isMounted) {
       const interval = setInterval(() => {
         setCurrentPhrase(loadingPhrases[Math.floor(Math.random() * loadingPhrases.length)]);
       }, 400);
 
       return () => clearInterval(interval);
     }
-  }, [isTransitioning]);
+  }, [isTransitioning, isMounted]);
 
   return (
     <>
       <AnimatePresence mode="wait">
-        {isTransitioning && (
+        {isTransitioning && isMounted && (
           <motion.div
             initial={{ opacity: 1 }}
             animate={{ opacity: 1 }}

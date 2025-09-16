@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 export default function HomeHero() {
   const [isLoading, setIsLoading] = useState(true);
   const [currentPhrase, setCurrentPhrase] = useState('');
+  const [isMounted, setIsMounted] = useState(false);
 
   const loadingPhrases = [
     "Frame by Frame",
@@ -22,14 +23,18 @@ export default function HomeHero() {
   ];
 
   useEffect(() => {
-    if (isLoading) {
+    setIsMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (isLoading && isMounted) {
       const interval = setInterval(() => {
         setCurrentPhrase(loadingPhrases[Math.floor(Math.random() * loadingPhrases.length)]);
       }, 2000);
 
       return () => clearInterval(interval);
     }
-  }, [isLoading]);
+  }, [isLoading, isMounted]);
 
   return (
     <section className="relative min-h-screen flex items-center justify-start pt-24 md:pt-0">
@@ -38,7 +43,7 @@ export default function HomeHero() {
       
       {/* Loading Animation */}
       <AnimatePresence>
-        {isLoading && (
+        {isLoading && isMounted && (
           <motion.div
             initial={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -104,7 +109,9 @@ export default function HomeHero() {
           allowFullScreen
           frameBorder="0"
           onLoad={() => {
-            setTimeout(() => setIsLoading(false), 1000);
+            if (isMounted) {
+              setTimeout(() => setIsLoading(false), 1000);
+            }
           }}
         />
       </div>
