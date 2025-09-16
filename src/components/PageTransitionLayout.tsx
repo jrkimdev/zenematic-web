@@ -3,6 +3,7 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { usePathname } from 'next/navigation';
 import { useState, useEffect } from 'react';
+import ClientOnly from './ClientOnly';
 
 export default function PageTransitionLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
@@ -46,9 +47,10 @@ export default function PageTransitionLayout({ children }: { children: React.Rea
   }, [isTransitioning, isMounted]);
 
   return (
-    <>
-      <AnimatePresence mode="wait">
-        {isTransitioning && isMounted && (
+    <ClientOnly fallback={<main className="w-full min-h-screen">{children}</main>}>
+      <>
+        <AnimatePresence mode="wait">
+          {isTransitioning && isMounted && (
           <motion.div
             initial={{ opacity: 1 }}
             animate={{ opacity: 1 }}
@@ -118,6 +120,7 @@ export default function PageTransitionLayout({ children }: { children: React.Rea
       >
         {children}
       </motion.main>
-    </>
+      </>
+    </ClientOnly>
   );
 } 
