@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
-import ClientOnly from './ClientOnly';
 
 export default function HomeHero() {
   const [isLoading, setIsLoading] = useState(true);
@@ -38,24 +37,7 @@ export default function HomeHero() {
   }, [isLoading, isMounted]);
 
   return (
-    <ClientOnly fallback={
-      <section className="relative min-h-screen flex items-center justify-start pt-24 md:pt-0">
-        <div className="absolute inset-0 bg-gradient-to-b from-zen-olive-dark to-zen-olive"></div>
-        <div className="relative z-10 w-full px-6 md:px-16 lg:px-24 xl:px-32">
-          <div className="flex flex-col items-center gap-6 md:gap-8">
-            <img 
-              src="/brand/zen-logo.png" 
-              alt="Zenematic Logo" 
-              className="h-40 sm:h-56 md:h-72 lg:h-96 xl:h-[28rem] w-auto"
-            />
-          </div>
-          <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-light mt-8 md:mt-10 text-center text-white/90">
-            Digital Story-Telling.
-          </p>
-        </div>
-      </section>
-    }>
-      <section className="relative min-h-screen flex items-center justify-start pt-24 md:pt-0">
+    <section className="relative min-h-screen flex items-center justify-start pt-24 md:pt-0">
         {/* Simple gradient background */}
         <div className="absolute inset-0 bg-gradient-to-b from-zen-olive-dark to-zen-olive"></div>
         
@@ -189,6 +171,5 @@ export default function HomeHero() {
         </motion.div>
       </motion.div>
     </section>
-    </ClientOnly>
   );
 } 

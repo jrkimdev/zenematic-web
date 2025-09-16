@@ -3,6 +3,7 @@ import './globals.css'
 import type { Metadata } from 'next'
 import Navbar from '@/components/Navbar'
 import { sharedMetadata } from './metadata'
+import PageTransitionLayout from '@/components/PageTransitionLayout'
 
 export const metadata: Metadata = {
   ...sharedMetadata,
@@ -28,7 +29,9 @@ export default function RootLayout({
       <body className="bg-zen-olive text-zen-cream overflow-x-hidden">
         <Navbar />
         <div className="relative">
-          {children}
+          <PageTransitionLayout>
+            {children}
+          </PageTransitionLayout>
         </div>
       </body>
     </html>
