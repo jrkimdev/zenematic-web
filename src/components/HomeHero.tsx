@@ -42,14 +42,7 @@ export default function HomeHero() {
       <div className="hero-video-bg absolute inset-0">
         <iframe
           src="https://player.vimeo.com/video/1176788727?h=7571921e4c&autoplay=1&loop=1&background=1&muted=1"
-          className="hero-video-placeholder absolute w-full h-full object-cover opacity-40"
-          style={{
-            minWidth: '100%',
-            minHeight: '100%',
-            width: 'auto',
-            height: 'auto',
-            aspectRatio: '16/9',
-          }}
+          className="hero-video-placeholder"
           allow="autoplay; fullscreen"
           allowFullScreen
           frameBorder="0"

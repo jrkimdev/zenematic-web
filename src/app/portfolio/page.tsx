@@ -1,7 +1,8 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import Link from 'next/link';
+import './portfolio.css';
 
 const mainProjects = [
   {
@@ -49,95 +50,77 @@ const bottomProjects = [
   },
 ];
 
-const thumbBg: React.CSSProperties = {
-  position: 'absolute', inset: 0,
-  background: 'linear-gradient(135deg, #1a1a1a 0%, #111 50%, #1a1a1a 100%)',
-};
-
 function FormatBadge({ label, video }: { label: string; video: boolean }) {
   return (
-    <div style={{ position: 'absolute', top: '1.25rem', right: '1.25rem', display: 'flex', alignItems: 'center', gap: '0.4rem', background: 'rgba(10,10,10,0.7)', border: '0.5px solid rgba(255,255,255,0.08)', padding: '0.3rem 0.75rem', borderRadius: '999px' }}>
+    <div className="format-badge">
       {video
-        ? <div style={{ width: 0, height: 0, borderStyle: 'solid', borderWidth: '3px 0 3px 6px', borderColor: 'transparent transparent transparent rgba(255,255,255,0.4)' }} />
-        : <div style={{ width: '5px', height: '5px', borderRadius: '50%', background: 'rgba(255,255,255,0.3)', flexShrink: 0 }} />
+        ? <div className="format-badge-play" />
+        : <div className="format-badge-dot" />
       }
-      <span style={{ fontSize: '0.58rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.35)' }}>{label}</span>
+      <span className="format-badge-label">{label}</span>
     </div>
   );
 }
 
 export default function PortfolioPage() {
-  const [hoveredMain, setHoveredMain] = useState<number | null>(null);
-  const [hoveredBottom, setHoveredBottom] = useState<number | null>(null);
-
   return (
-    <main style={{ background: 'var(--black)', minHeight: '100vh' }}>
+    <main className="work-page-main">
 
       {/* Page Hero */}
-      <section style={{ padding: '13rem 4rem 5rem', background: 'var(--black)', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', borderBottom: '0.5px solid rgba(255,255,255,0.05)' }}>
+      <section className="work-page-hero">
         <div>
-          <p style={{ fontSize: '0.65rem', letterSpacing: '0.25em', textTransform: 'uppercase', color: 'var(--gold)', marginBottom: '1.5rem', opacity: 0, animation: 'fadeUp 1s ease 0.2s forwards' }}>
-            Selected work
-          </p>
-          <h1 style={{ fontFamily: 'Cormorant Garamond, serif', fontWeight: 300, fontSize: 'clamp(3.5rem, 7vw, 6rem)', lineHeight: 1.0, color: 'var(--white)', opacity: 0, animation: 'fadeUp 1s ease 0.4s forwards' }}>
-            The<br /><em style={{ fontStyle: 'italic', color: 'var(--film)' }}>work.</em>
-          </h1>
+          <p className="work-hero-label">Selected work</p>
+          <h1 className="work-hero-h1">The<br /><em>work.</em></h1>
         </div>
-        <div style={{ opacity: 0, animation: 'fadeUp 1s ease 0.6s forwards' }}>
-          <p style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '5rem', fontWeight: 300, color: 'rgba(255,255,255,0.06)', lineHeight: 1 }}>05</p>
-          <p style={{ fontSize: '0.65rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.2)', textAlign: 'right', marginTop: '0.25rem' }}>Featured projects</p>
+        <div className="work-hero-count-wrap">
+          <p className="work-hero-count">05</p>
+          <p className="work-hero-count-label">Featured projects</p>
         </div>
       </section>
 
       {/* Featured Project — Big 12 */}
-      <div style={{ position: 'relative', overflow: 'hidden', cursor: 'pointer' }}>
-        <div style={{ width: '100%', aspectRatio: '21/9', background: 'var(--shadow)', position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
-          <div style={thumbBg} />
-          <div style={{ position: 'relative', fontSize: '0.65rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.08)', textAlign: 'center', lineHeight: 2 }}>
+      <div className="work-featured-wrap">
+        <div className="work-featured-image">
+          <div className="work-thumb-bg" />
+          <div className="work-featured-placeholder">
             Replace with your strongest Big 12 tournament image<br />Wide shot · High contrast · Athlete or crowd energy
           </div>
         </div>
-        <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, background: 'linear-gradient(to top, rgba(10,10,10,0.97) 0%, rgba(10,10,10,0.5) 40%, transparent 100%)', padding: '4rem 4rem 3rem', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
+        <div className="work-page-featured-overlay">
           <div>
-            <p style={{ fontSize: '0.62rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: 'var(--gold)', marginBottom: '0.75rem', opacity: 0.85 }}>Sports · Big 12 Media · Kansas City</p>
-            <h2 style={{ fontFamily: 'Cormorant Garamond, serif', fontWeight: 300, fontSize: 'clamp(2rem, 4vw, 3.5rem)', color: 'var(--white)', lineHeight: 1.1, marginBottom: '0.75rem' }}>
+            <p className="work-featured-cat">Sports · Big 12 Media · Kansas City</p>
+            <h2 className="work-featured-title">
               Three years.<br />Twelve teams.<br />One story at a time.
             </h2>
-            <p style={{ fontSize: '0.83rem', color: 'rgba(255,255,255,0.45)', lineHeight: 1.7, maxWidth: '480px', fontWeight: 300 }}>
+            <p className="work-featured-desc">
               Official tournament media for the Big 12 Conference — three consecutive years of on-the-ground coverage in Kansas City. Athlete portraits, game energy, behind-the-scenes access.
             </p>
           </div>
-          <div style={{ textAlign: 'right', flexShrink: 0, paddingLeft: '2rem' }}>
-            <span style={{ display: 'inline-block', fontSize: '0.6rem', letterSpacing: '0.2em', textTransform: 'uppercase', border: '0.5px solid rgba(200,169,110,0.3)', color: 'var(--gold)', padding: '0.4rem 1rem', marginBottom: '1rem' }}>Featured work</span>
-            <p style={{ fontSize: '0.65rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.25)' }}>Photography · Video</p>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginTop: '0.75rem', justifyContent: 'flex-end' }}>
-              <div style={{ width: 0, height: 0, borderStyle: 'solid', borderWidth: '5px 0 5px 9px', borderColor: 'transparent transparent transparent rgba(255,255,255,0.3)' }} />
-              <span style={{ fontSize: '0.62rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.3)' }}>View reel</span>
+          <div className="work-page-featured-right">
+            <span className="work-featured-badge">Featured work</span>
+            <p className="work-featured-format-label">Photography · Video</p>
+            <div className="work-featured-play-row">
+              <div className="work-featured-play-icon" />
+              <span className="work-featured-play-text">View reel</span>
             </div>
           </div>
         </div>
       </div>
 
       {/* Main 2-column Grid (tall 4:5) */}
-      <div style={{ padding: '1px 0 0', background: 'rgba(255,255,255,0.04)' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1px' }}>
+      <div className="work-grid-wrapper">
+        <div className="work-page-main-grid">
           {mainProjects.map((p, i) => (
-            <div key={i}
-              style={{ position: 'relative', overflow: 'hidden', cursor: 'pointer', background: 'var(--black)' }}
-              onMouseEnter={() => setHoveredMain(i)}
-              onMouseLeave={() => setHoveredMain(null)}
-            >
-              <div style={{ width: '100%', aspectRatio: '4/5', background: 'var(--studio)', position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
-                <div style={thumbBg} />
-                <div style={{ position: 'relative', fontSize: '0.6rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.07)', textAlign: 'center', lineHeight: 2.2, padding: '2rem', whiteSpace: 'pre-line' }}>{p.placeholder}</div>
+            <div key={i} className="work-card-item">
+              <div className="work-card-image tall">
+                <div className="work-thumb-bg" />
+                <div className="work-card-placeholder">{p.placeholder}</div>
               </div>
               <FormatBadge label={p.format} video={p.formatVideo} />
-              <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, background: 'linear-gradient(to top, rgba(10,10,10,0.96) 0%, rgba(10,10,10,0.3) 50%, transparent 100%)', padding: hoveredMain === i ? '2.5rem 2.25rem 2.5rem' : '2.5rem 2.25rem 2rem', transition: 'padding 0.4s' }}>
-                <p style={{ fontSize: '0.58rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: 'var(--gold)', marginBottom: '0.5rem', opacity: 0.75 }}>{p.cat}</p>
-                <h3 style={{ fontFamily: 'Cormorant Garamond, serif', fontWeight: 400, fontSize: '1.5rem', color: 'var(--white)', lineHeight: 1.2, marginBottom: '0.6rem' }}>{p.name}</h3>
-                {hoveredMain === i && (
-                  <p style={{ fontSize: '0.78rem', color: 'rgba(255,255,255,0.4)', lineHeight: 1.6, fontWeight: 300, maxWidth: '340px' }}>{p.tagline}</p>
-                )}
+              <div className="work-card-overlay">
+                <p className="work-card-cat">{p.cat}</p>
+                <h3 className="work-card-title">{p.name}</h3>
+                <p className="work-card-tagline">{p.tagline}</p>
               </div>
             </div>
           ))}
@@ -145,36 +128,30 @@ export default function PortfolioPage() {
       </div>
 
       {/* Work Statement Break */}
-      <div style={{ padding: '5rem 4rem', background: 'var(--studio)', borderTop: '1px solid rgba(200,169,110,0.08)', borderBottom: '1px solid rgba(200,169,110,0.08)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '4rem' }}>
-        <p style={{ fontFamily: 'Cormorant Garamond, serif', fontWeight: 300, fontStyle: 'italic', fontSize: 'clamp(1.5rem, 3vw, 2.5rem)', color: 'rgba(255,255,255,0.7)', lineHeight: 1.4, maxWidth: '600px' }}>
+      <div className="work-page-statement">
+        <p className="work-statement-quote">
           &ldquo;Every frame is a decision. We make them all with intention.&rdquo;
         </p>
-        <div style={{ flexShrink: 0, textAlign: 'right' }}>
-          <p style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '4rem', fontWeight: 300, color: 'var(--white)', lineHeight: 1 }}>3</p>
-          <p style={{ fontSize: '0.65rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.25)', marginTop: '0.25rem' }}>Years — Big 12 Media</p>
+        <div className="work-statement-stat">
+          <p className="work-statement-stat-num">3</p>
+          <p className="work-statement-stat-label">Years — Big 12 Media</p>
         </div>
       </div>
 
       {/* Bottom 3-column Grid (3:4) */}
-      <div style={{ padding: '1px 0 0', background: 'rgba(255,255,255,0.04)' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1px' }}>
+      <div className="work-grid-wrapper">
+        <div className="work-page-bottom-grid">
           {bottomProjects.map((p, i) => (
-            <div key={i}
-              style={{ position: 'relative', overflow: 'hidden', cursor: 'pointer', background: 'var(--black)' }}
-              onMouseEnter={() => setHoveredBottom(i)}
-              onMouseLeave={() => setHoveredBottom(null)}
-            >
-              <div style={{ width: '100%', aspectRatio: '3/4', background: 'var(--studio)', position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
-                <div style={thumbBg} />
-                <div style={{ position: 'relative', fontSize: '0.6rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.07)', textAlign: 'center', lineHeight: 2.2, padding: '2rem', whiteSpace: 'pre-line' }}>{p.placeholder}</div>
+            <div key={i} className="work-card-item">
+              <div className="work-card-image short">
+                <div className="work-thumb-bg" />
+                <div className="work-card-placeholder">{p.placeholder}</div>
               </div>
               <FormatBadge label={p.format} video={p.formatVideo} />
-              <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, background: 'linear-gradient(to top, rgba(10,10,10,0.96) 0%, rgba(10,10,10,0.3) 50%, transparent 100%)', padding: hoveredBottom === i ? '1.75rem 1.5rem 2rem' : '1.75rem 1.5rem 1.5rem', transition: 'padding 0.4s' }}>
-                <p style={{ fontSize: '0.58rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: 'var(--gold)', marginBottom: '0.5rem', opacity: 0.75 }}>{p.cat}</p>
-                <h3 style={{ fontFamily: 'Cormorant Garamond, serif', fontWeight: 400, fontSize: '1.2rem', color: 'var(--white)', lineHeight: 1.2, marginBottom: '0.6rem' }}>{p.name}</h3>
-                {hoveredBottom === i && (
-                  <p style={{ fontSize: '0.78rem', color: 'rgba(255,255,255,0.4)', lineHeight: 1.6, fontWeight: 300, maxWidth: '340px' }}>{p.tagline}</p>
-                )}
+              <div className="work-card-overlay bottom">
+                <p className="work-card-cat">{p.cat}</p>
+                <h3 className="work-card-title small">{p.name}</h3>
+                <p className="work-card-tagline">{p.tagline}</p>
               </div>
             </div>
           ))}
@@ -182,14 +159,10 @@ export default function PortfolioPage() {
       </div>
 
       {/* Closer CTA */}
-      <section style={{ padding: '9rem 4rem', background: 'var(--black)', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
-        <p style={{ fontSize: '0.65rem', letterSpacing: '0.25em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.2)', marginBottom: '1.5rem' }}>Seen enough?</p>
-        <h2 style={{ fontFamily: 'Cormorant Garamond, serif', fontWeight: 300, fontSize: 'clamp(2.5rem, 5vw, 4.5rem)', color: 'var(--white)', lineHeight: 1.1, marginBottom: '1.25rem' }}>
-          Let&apos;s make something<br /><em style={{ fontStyle: 'italic', color: 'var(--film)' }}>worth remembering.</em>
-        </h2>
-        <p style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.3)', marginBottom: '3rem' }}>
-          Tell us about your project and we&apos;ll get back to you within 24 hours.
-        </p>
+      <section className="work-page-closer">
+        <p className="work-closer-eyebrow">Seen enough?</p>
+        <h2 className="work-closer-headline">Let&apos;s make something<br /><em>worth remembering.</em></h2>
+        <p className="work-closer-sub">Tell us about your project and we&apos;ll get back to you within 24 hours.</p>
         <Link href="/contact" className="closer-btn">Start a conversation</Link>
       </section>
 

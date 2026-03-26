@@ -1,0 +1,420 @@
+/* ============================================================
+   PORTFOLIO PAGE — Component Styles
+   ============================================================ */
+
+.work-page-main {
+  background: var(--black);
+  min-height: 100vh;
+}
+
+/* --- Section Layouts --- */
+
+.work-page-hero {
+  padding: 13rem 4rem 5rem;
+  background: var(--black);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  border-bottom: 0.5px solid rgba(255, 255, 255, 0.05);
+}
+
+.work-page-featured-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(10, 10, 10, 0.97) 0%, rgba(10, 10, 10, 0.5) 40%, transparent 100%);
+  padding: 4rem 4rem 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.work-page-featured-right {
+  text-align: right;
+  flex-shrink: 0;
+  padding-left: 2rem;
+}
+
+.work-page-main-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+}
+
+.work-page-statement {
+  padding: 5rem 4rem;
+  background: var(--studio);
+  border-top: 1px solid rgba(200, 169, 110, 0.08);
+  border-bottom: 1px solid rgba(200, 169, 110, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4rem;
+}
+
+.work-page-bottom-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+}
+
+.work-page-closer {
+  padding: 9rem 4rem;
+  background: var(--black);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* --- Hero Content --- */
+.work-hero-label {
+  font-size: 0.65rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1.5rem;
+  opacity: 0;
+  animation: fadeUp 1s ease 0.2s forwards;
+}
+
+.work-hero-h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: clamp(3.5rem, 7vw, 6rem);
+  line-height: 1;
+  color: var(--white);
+  opacity: 0;
+  animation: fadeUp 1s ease 0.4s forwards;
+}
+
+.work-hero-h1 em {
+  font-style: italic;
+  color: var(--film);
+}
+
+.work-hero-count-wrap {
+  opacity: 0;
+  animation: fadeUp 1s ease 0.6s forwards;
+}
+
+.work-hero-count {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 5rem;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.06);
+  line-height: 1;
+}
+
+.work-hero-count-label {
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.2);
+  text-align: right;
+  margin-top: 0.25rem;
+}
+
+/* --- Featured Project --- */
+.work-featured-wrap {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.work-featured-image {
+  width: 100%;
+  aspect-ratio: 21/9;
+  background: var(--shadow);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.work-thumb-bg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #1a1a1a 0%, #111 50%, #1a1a1a 100%);
+}
+
+.work-featured-placeholder {
+  position: relative;
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.08);
+  text-align: center;
+  line-height: 2;
+}
+
+.work-featured-cat {
+  font-size: 0.62rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.75rem;
+  opacity: 0.85;
+}
+
+.work-featured-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  color: var(--white);
+  line-height: 1.1;
+  margin-bottom: 0.75rem;
+}
+
+.work-featured-desc {
+  font-size: 0.83rem;
+  color: rgba(255, 255, 255, 0.45);
+  line-height: 1.7;
+  max-width: 480px;
+  font-weight: 300;
+}
+
+.work-featured-badge {
+  display: inline-block;
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  border: 0.5px solid rgba(200, 169, 110, 0.3);
+  color: var(--gold);
+  padding: 0.4rem 1rem;
+  margin-bottom: 1rem;
+}
+
+.work-featured-format-label {
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.25);
+}
+
+.work-featured-play-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+  justify-content: flex-end;
+}
+
+.work-featured-play-icon {
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 5px 0 5px 9px;
+  border-color: transparent transparent transparent rgba(255, 255, 255, 0.3);
+}
+
+.work-featured-play-text {
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+/* --- Card Grids --- */
+.work-grid-wrapper {
+  padding: 1px 0 0;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.work-card-item {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  background: var(--black);
+}
+
+.work-card-image {
+  width: 100%;
+  background: var(--studio);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.work-card-image.tall {
+  aspect-ratio: 4/5;
+}
+
+.work-card-image.short {
+  aspect-ratio: 3/4;
+}
+
+.work-card-placeholder {
+  position: relative;
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.07);
+  text-align: center;
+  line-height: 2.2;
+  padding: 2rem;
+  white-space: pre-line;
+}
+
+.work-card-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(10, 10, 10, 0.96) 0%, rgba(10, 10, 10, 0.3) 50%, transparent 100%);
+  padding: 2.5rem 2.25rem 2rem;
+  transition: padding 0.4s;
+}
+
+.work-card-item:hover .work-card-overlay {
+  padding-bottom: 2.5rem;
+}
+
+.work-card-overlay.bottom {
+  padding: 1.75rem 1.5rem 1.5rem;
+}
+
+.work-card-item:hover .work-card-overlay.bottom {
+  padding-bottom: 2rem;
+}
+
+.work-card-cat {
+  font-size: 0.58rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.5rem;
+  opacity: 0.75;
+}
+
+.work-card-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 400;
+  font-size: 1.5rem;
+  color: var(--white);
+  line-height: 1.2;
+  margin-bottom: 0.6rem;
+}
+
+.work-card-title.small {
+  font-size: 1.2rem;
+}
+
+.work-card-tagline {
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.4);
+  line-height: 1.6;
+  font-weight: 300;
+  max-width: 340px;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity 0.3s, max-height 0.4s;
+}
+
+.work-card-item:hover .work-card-tagline {
+  max-height: 8rem;
+  opacity: 1;
+}
+
+/* --- Statement Break --- */
+.work-statement-quote {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-style: italic;
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.4;
+  max-width: 600px;
+}
+
+.work-statement-stat {
+  flex-shrink: 0;
+  text-align: right;
+}
+
+.work-statement-stat-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 4rem;
+  font-weight: 300;
+  color: var(--white);
+  line-height: 1;
+}
+
+.work-statement-stat-label {
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.25);
+  margin-top: 0.25rem;
+}
+
+/* --- Closer --- */
+.work-closer-eyebrow {
+  font-size: 0.65rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.2);
+  margin-bottom: 1.5rem;
+}
+
+.work-closer-headline {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  color: var(--white);
+  line-height: 1.1;
+  margin-bottom: 1.25rem;
+}
+
+.work-closer-headline em {
+  font-style: italic;
+  color: var(--film);
+}
+
+.work-closer-sub {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.3);
+  margin-bottom: 3rem;
+}
+
+/* --- Format Badge --- */
+.format-badge {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(10, 10, 10, 0.7);
+  border: 0.5px solid rgba(255, 255, 255, 0.08);
+  padding: 0.3rem 0.75rem;
+  border-radius: 999px;
+}
+
+.format-badge-play {
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 3px 0 3px 6px;
+  border-color: transparent transparent transparent rgba(255, 255, 255, 0.4);
+}
+
+.format-badge-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  flex-shrink: 0;
+}
+
+.format-badge-label {
+  font-size: 0.58rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.35);
+}

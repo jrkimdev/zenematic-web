@@ -1,0 +1,298 @@
+/* ============================================================
+   CONTACT PAGE — Component Styles
+   ============================================================ */
+
+.contact-main {
+  background: var(--black);
+  min-height: 100vh;
+}
+
+/* --- Grid Layout --- */
+
+.contact-grid {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.contact-left-panel {
+  background: var(--studio);
+  padding: 12rem 4rem 5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-right: 0.5px solid rgba(255, 255, 255, 0.05);
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-right-panel {
+  background: var(--black);
+  padding: 12rem 4rem 5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.contact-form-name-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+}
+
+/* --- Left Panel --- */
+.contact-glow {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 40%;
+  background: radial-gradient(ellipse at bottom left, rgba(200, 169, 110, 0.04) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.contact-eyebrow {
+  font-size: 0.65rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 2rem;
+  opacity: 0;
+  animation: fadeUp 1s ease 0.2s forwards;
+}
+
+.contact-headline {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: clamp(3rem, 5vw, 5rem);
+  line-height: 1.05;
+  color: var(--white);
+  margin-bottom: 2rem;
+  opacity: 0;
+  animation: fadeUp 1s ease 0.4s forwards;
+}
+
+.contact-headline em {
+  font-style: italic;
+  color: var(--film);
+}
+
+.contact-sub {
+  font-size: 0.88rem;
+  color: rgba(255, 255, 255, 0.4);
+  line-height: 1.9;
+  max-width: 380px;
+  font-weight: 300;
+  margin-bottom: 3.5rem;
+  opacity: 0;
+  animation: fadeUp 1s ease 0.6s forwards;
+}
+
+.contact-info {
+  opacity: 0;
+  animation: fadeUp 1s ease 0.8s forwards;
+}
+
+.contact-info-item {
+  padding: 1.25rem 0;
+  border-bottom: 0.5px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.contact-info-item.first {
+  border-top: 0.5px solid rgba(255, 255, 255, 0.05);
+}
+
+.contact-info-label {
+  font-size: 0.6rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.25);
+}
+
+.contact-info-value {
+  font-size: 0.9rem;
+  color: var(--film);
+  font-weight: 300;
+}
+
+.contact-info-link {
+  color: var(--film);
+  text-decoration: none;
+}
+
+.contact-social {
+  opacity: 0;
+  animation: fadeUp 1s ease 1s forwards;
+}
+
+.contact-social-list {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+
+.contact-social-link {
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.3);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.contact-social-arrow {
+  font-size: 0.6rem;
+}
+
+/* --- Right Panel / Form --- */
+.contact-form-header {
+  margin-bottom: 2.5rem;
+  opacity: 0;
+  animation: fadeUp 1s ease 0.4s forwards;
+}
+
+.contact-form-eyebrow {
+  font-size: 0.65rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.75rem;
+  opacity: 0.7;
+}
+
+.contact-form-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: 1.75rem;
+  color: var(--white);
+  line-height: 1.2;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  opacity: 0;
+  animation: fadeUp 1s ease 0.6s forwards;
+}
+
+/* --- Form Fields --- */
+.form-field {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 0.5px solid rgba(255, 255, 255, 0.07);
+  padding: 1.25rem 0;
+  gap: 0.4rem;
+  transition: border-color 0.3s;
+}
+
+.form-field:focus-within {
+  border-bottom-color: rgba(200, 169, 110, 0.4);
+}
+
+.form-label {
+  font-size: 0.58rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.25);
+  transition: color 0.3s;
+}
+
+.form-field:focus-within .form-label {
+  color: var(--gold);
+}
+
+.form-input {
+  background: transparent;
+  border: none;
+  outline: none;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 300;
+  color: var(--film);
+  padding: 0;
+  width: 100%;
+}
+
+.form-input::placeholder {
+  color: rgba(255, 255, 255, 0.2);
+}
+
+.form-input option {
+  background: var(--studio);
+  color: var(--film);
+}
+
+.form-textarea {
+  resize: none;
+  line-height: 1.7;
+}
+
+.form-select-wrap {
+  position: relative;
+}
+
+.form-select-arrow {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.25);
+  pointer-events: none;
+}
+
+.form-last-name-pad {
+  padding-left: 1.5rem;
+}
+
+/* --- Form Footer --- */
+.contact-form-footer {
+  margin-top: 2.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+}
+
+.contact-response-note {
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.2);
+  line-height: 1.6;
+  letter-spacing: 0.03em;
+}
+
+.contact-submit-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--black);
+  background: var(--gold);
+  border: none;
+  padding: 1rem 2rem;
+  cursor: pointer;
+  transition: background 0.3s;
+  white-space: nowrap;
+}
+
+.contact-submit-btn:hover {
+  background: var(--film);
+}
+
+.contact-footer-note {
+  margin-top: 1.25rem;
+  font-size: 0.62rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.15);
+  text-align: right;
+}

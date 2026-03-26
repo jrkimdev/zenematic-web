@@ -26,7 +26,7 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className={`fixed w-full z-50 flex justify-between items-center px-16 py-6 transition-all duration-300 ${
+    <nav className={`fixed w-full z-50 flex justify-between items-center px-6 md:px-16 py-6 transition-all duration-300 ${
       scrolled ? 'bg-gradient-to-b from-black/95 to-transparent' : 'bg-transparent'
     }`}>
       <Link href="/" className="nav-logo">
@@ -47,7 +47,7 @@ export default function Navbar() {
         ))}
       </ul>
       
-      <Link href="/services" className="nav-cta">
+      <Link href="/services" className="nav-cta hidden md:inline-block">
         Start a project
       </Link>
 

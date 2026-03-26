@@ -1,4 +1,5 @@
 'use client';
+import './services.css';
 
 const tiers = [
   {
@@ -76,16 +77,9 @@ const strategyItems = [
   { name: 'Creative direction', desc: 'Visual language, mood board, shot list, and on-set direction. We take the creative lead so you can focus on being in the work, not managing it.' },
 ];
 
-const S = {
-  tierBase: { background: 'var(--studio)', padding: '3rem 2.5rem', display: 'flex', flexDirection: 'column' as const, position: 'relative' as const, transition: 'background 0.4s' },
-  tierFeatured: { background: 'var(--shadow)', borderTop: '1px solid var(--gold)' },
-  specCard: { background: 'var(--black)', padding: '2.75rem', transition: 'background 0.4s' },
-  ruleCard: { background: 'var(--studio)', padding: '2rem' },
-};
-
 export default function Services() {
   return (
-    <main style={{ background: 'var(--black)', minHeight: '100vh' }}>
+    <main className="svc-main">
 
       {/* Page Hero */}
       <section className="page-hero">
@@ -95,93 +89,85 @@ export default function Services() {
       </section>
 
       {/* Production Tiers */}
-      <section style={{ padding: '7rem 4rem', background: 'var(--studio)' }}>
+      <section className="svc-tiers-section">
         <div className="section-label">Production packages</div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1px', background: 'rgba(255,255,255,0.05)' }}>
+        <div className="svc-tiers-grid">
           {tiers.map((tier, i) => (
-            <div key={i} style={{ ...S.tierBase, ...(tier.featured ? S.tierFeatured : {}) }}
-              onMouseEnter={e => { (e.currentTarget as HTMLDivElement).style.background = tier.featured ? '#222' : '#181818'; }}
-              onMouseLeave={e => { (e.currentTarget as HTMLDivElement).style.background = tier.featured ? 'var(--shadow)' : 'var(--studio)'; }}
-            >
-              {tier.badge && (
-                <span style={{ display: 'inline-block', fontSize: '0.6rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--gold)', border: '0.5px solid rgba(200,169,110,0.3)', padding: '0.3rem 0.8rem', marginBottom: '1.5rem', alignSelf: 'flex-start' }}>{tier.badge}</span>
-              )}
-              <p style={{ fontFamily: 'Cormorant Garamond, serif', fontWeight: 400, fontSize: '2.2rem', color: 'var(--white)', marginBottom: '0.25rem', lineHeight: 1 }}>{tier.name}</p>
-              <p style={{ fontSize: '0.75rem', letterSpacing: '0.1em', color: 'rgba(255,255,255,0.35)', marginBottom: '1.75rem', textTransform: 'uppercase' }}>
-                <strong style={{ fontSize: '1.1rem', color: 'var(--film)', fontWeight: 400, letterSpacing: 0, marginRight: '0.25rem' }}>{tier.price}</strong>{tier.period}
+            <div key={i} className={`tier-card${tier.featured ? ' featured' : ''}`}>
+              {tier.badge && <span className="tier-badge">{tier.badge}</span>}
+              <p className="tier-name">{tier.name}</p>
+              <p className="tier-price-row">
+                <strong className="tier-price">{tier.price}</strong>{tier.period}
               </p>
-              <hr style={{ border: 'none', borderTop: '0.5px solid rgba(255,255,255,0.07)', marginBottom: '1.75rem' }} />
-              <p style={{ fontSize: '0.83rem', color: 'rgba(255,255,255,0.45)', lineHeight: 1.8, marginBottom: '1.75rem', fontWeight: 300 }}>{tier.desc}</p>
-              <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.6rem', marginBottom: '2.5rem', flex: 1 }}>
+              <hr className="tier-divider" />
+              <p className="tier-desc">{tier.desc}</p>
+              <ul className="tier-includes">
                 {tier.includes.map((item, j) => (
-                  <li key={j} style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.5)', display: 'flex', alignItems: 'baseline', gap: '0.75rem', fontWeight: 300 }}>
-                    <span style={{ color: 'rgba(200,169,110,0.4)', flexShrink: 0, fontSize: '0.7rem' }}>—</span>{item}
+                  <li key={j} className="tier-item">
+                    <span className="tier-dash">—</span>{item}
                   </li>
                 ))}
               </ul>
-              <a href="/contact" style={{ display: 'inline-block', fontSize: '0.7rem', letterSpacing: '0.18em', textTransform: 'uppercase', textDecoration: 'none', border: tier.featured ? 'none' : '0.5px solid rgba(255,255,255,0.12)', padding: '0.8rem 1.5rem', textAlign: 'center', transition: 'all 0.3s', marginTop: 'auto', color: tier.featured ? 'var(--black)' : 'rgba(255,255,255,0.5)', background: tier.featured ? 'var(--gold)' : 'transparent' }}>Inquire →</a>
+              <a href="/contact" className={`tier-cta${tier.featured ? ' featured' : ''}`}>Inquire →</a>
             </div>
           ))}
         </div>
       </section>
 
       {/* Specialty Services */}
-      <section style={{ padding: '7rem 4rem', background: 'var(--black)' }}>
+      <section className="svc-spec-section">
         <div className="section-label">Specialty services</div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1px', background: 'rgba(255,255,255,0.05)' }}>
+        <div className="svc-spec-grid">
           {specialty.map((s, i) => (
-            <div key={i} style={{ ...S.specCard }}
-              onMouseEnter={e => { (e.currentTarget as HTMLDivElement).style.background = 'var(--studio)'; }}
-              onMouseLeave={e => { (e.currentTarget as HTMLDivElement).style.background = 'var(--black)'; }}
-            >
-              <p style={{ fontSize: '0.6rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--gold)', marginBottom: '0.75rem', opacity: 0.7 }}>{s.cat}</p>
-              <h3 style={{ fontFamily: 'Cormorant Garamond, serif', fontWeight: 400, fontSize: '1.5rem', color: 'var(--white)', marginBottom: '0.75rem', lineHeight: 1.2 }}>{s.name}</h3>
-              <p style={{ fontSize: '0.82rem', color: 'rgba(255,255,255,0.4)', lineHeight: 1.8, marginBottom: '1.5rem', fontWeight: 300 }}>{s.desc}</p>
-              <p style={{ fontSize: '0.72rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: s.custom ? 'var(--gold)' : 'rgba(255,255,255,0.3)' }}>{s.price}</p>
+            <div key={i} className="spec-card">
+              <p className="spec-cat">{s.cat}</p>
+              <h3 className="spec-name">{s.name}</h3>
+              <p className="spec-desc">{s.desc}</p>
+              <p className={`spec-price${s.custom ? ' custom' : ''}`}>{s.price}</p>
             </div>
           ))}
         </div>
       </section>
 
       {/* Retainer */}
-      <section style={{ padding: '5rem 4rem', background: 'var(--studio)', borderTop: '0.5px solid rgba(255,255,255,0.05)', borderBottom: '0.5px solid rgba(255,255,255,0.05)' }}>
-        <div style={{ background: 'var(--black)', border: '0.5px solid rgba(200,169,110,0.15)', padding: '4rem', display: 'grid', gridTemplateColumns: '1fr auto', gap: '5rem', alignItems: 'start' }}>
+      <section className="svc-retainer-section">
+        <div className="svc-retainer-inner">
           <div>
-            <p style={{ fontSize: '0.6rem', letterSpacing: '0.25em', textTransform: 'uppercase', color: 'var(--gold)', marginBottom: '1.25rem', opacity: 0.7 }}>Monthly retainer</p>
-            <h2 style={{ fontFamily: 'Cormorant Garamond, serif', fontWeight: 300, fontSize: '2.2rem', color: 'var(--white)', marginBottom: '1rem', lineHeight: 1.1 }}>Zenematic on demand.</h2>
-            <p style={{ fontSize: '0.88rem', color: 'rgba(255,255,255,0.45)', lineHeight: 1.9, marginBottom: '2rem', fontWeight: 300, maxWidth: '500px' }}>Your brand, covered every month. Consistent cinematic content — planned, shot, and delivered on a recurring schedule. No briefs from scratch each time. We know your brand.</p>
-            <ul style={{ listStyle: 'none', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.6rem 2rem' }}>
+            <p className="retainer-eyebrow">Monthly retainer</p>
+            <h2 className="retainer-headline">Zenematic on demand.</h2>
+            <p className="retainer-desc">Your brand, covered every month. Consistent cinematic content — planned, shot, and delivered on a recurring schedule. No briefs from scratch each time. We know your brand.</p>
+            <ul className="svc-retainer-list">
               {['2 shoot days per month', 'Monthly strategy session', '30+ edited photos', '4 reels per month', 'Priority scheduling', 'Dedicated creative direction'].map((item, i) => (
-                <li key={i} style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.45)', display: 'flex', alignItems: 'baseline', gap: '0.75rem', fontWeight: 300 }}>
-                  <span style={{ color: 'rgba(200,169,110,0.4)', flexShrink: 0, fontSize: '0.7rem' }}>—</span>{item}
+                <li key={i} className="retainer-item">
+                  <span className="retainer-dash">—</span>{item}
                 </li>
               ))}
             </ul>
           </div>
-          <div style={{ textAlign: 'right', flexShrink: 0, display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '0.5rem' }}>
-            <p style={{ fontSize: '0.6rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.25)' }}>Starting from</p>
-            <p style={{ fontFamily: 'Cormorant Garamond, serif', fontWeight: 300, fontSize: '3.5rem', color: 'var(--white)', lineHeight: 1 }}>$2,500</p>
-            <p style={{ fontSize: '0.7rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.25)', marginBottom: '1.5rem' }}>per month</p>
-            <p style={{ fontSize: '0.65rem', color: 'rgba(255,255,255,0.2)', letterSpacing: '0.08em', marginBottom: '1.5rem' }}>3-month minimum commitment</p>
-            <a href="/contact" className="closer-btn" style={{ whiteSpace: 'nowrap' }}>Let&apos;s talk →</a>
+          <div className="svc-retainer-price">
+            <p className="retainer-from">Starting from</p>
+            <p className="retainer-amount">$2,500</p>
+            <p className="retainer-period">per month</p>
+            <p className="retainer-commitment">3-month minimum commitment</p>
+            <a href="/contact" className="closer-btn">Let&apos;s talk →</a>
           </div>
         </div>
       </section>
 
       {/* Creative Strategy Add-On */}
-      <section style={{ padding: '7rem 4rem', background: 'var(--black)' }}>
-        <div style={{ border: '0.5px solid rgba(255,255,255,0.06)', padding: '4rem', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '5rem', alignItems: 'start' }}>
+      <section className="svc-strategy-section">
+        <div className="svc-strategy-inner">
           <div>
             <div className="section-label">Add-on service</div>
-            <h2 style={{ fontFamily: 'Cormorant Garamond, serif', fontWeight: 300, fontSize: '2rem', color: 'var(--white)', marginBottom: '1.25rem', lineHeight: 1.2 }}>Creative strategy and direction</h2>
-            <p style={{ fontSize: '0.88rem', color: 'rgba(255,255,255,0.45)', lineHeight: 1.9, fontWeight: 300, marginBottom: '1.5rem' }}>Not just what to shoot — but what to say, how to say it, and why it will land. Strategy sessions can be added to any package or booked standalone.</p>
-            <p style={{ fontSize: '0.72rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.3)' }}>Standalone sessions <strong style={{ color: 'var(--film)', fontWeight: 400, fontSize: '0.9rem' }}>from $350</strong></p>
+            <h2 className="strategy-headline">Creative strategy and direction</h2>
+            <p className="strategy-desc">Not just what to shoot — but what to say, how to say it, and why it will land. Strategy sessions can be added to any package or booked standalone.</p>
+            <p className="strategy-price-note">Standalone sessions <strong className="strategy-price-strong">from $350</strong></p>
           </div>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+          <div className="strategy-list">
             {strategyItems.map((item, i) => (
-              <div key={i} style={{ paddingBottom: '1.5rem', borderBottom: i < strategyItems.length - 1 ? '0.5px solid rgba(255,255,255,0.05)' : 'none' }}>
-                <p style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1.1rem', color: 'var(--white)', marginBottom: '0.4rem' }}>{item.name}</p>
-                <p style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.35)', lineHeight: 1.7, fontWeight: 300 }}>{item.desc}</p>
+              <div key={i} className="strategy-item">
+                <p className="strategy-item-name">{item.name}</p>
+                <p className="strategy-item-desc">{item.desc}</p>
               </div>
             ))}
           </div>
@@ -189,23 +175,23 @@ export default function Services() {
       </section>
 
       {/* Rules */}
-      <section style={{ padding: '5rem 4rem', background: 'var(--studio)', borderTop: '0.5px solid rgba(255,255,255,0.05)' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1px', background: 'rgba(255,255,255,0.04)' }}>
+      <section className="svc-rules-section">
+        <div className="svc-rules-grid">
           {rules.map((r, i) => (
-            <div key={i} style={{ ...S.ruleCard }}>
-              <p style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '0.85rem', color: 'var(--gold)', opacity: 0.5, marginBottom: '0.75rem' }}>{r.num}</p>
-              <p style={{ fontSize: '0.82rem', fontWeight: 500, color: 'var(--white)', marginBottom: '0.5rem' }}>{r.title}</p>
-              <p style={{ fontSize: '0.78rem', color: 'rgba(255,255,255,0.35)', lineHeight: 1.7, fontWeight: 300 }}>{r.desc}</p>
+            <div key={i} className="rule-card">
+              <p className="rule-num">{r.num}</p>
+              <p className="rule-title">{r.title}</p>
+              <p className="rule-desc">{r.desc}</p>
             </div>
           ))}
         </div>
       </section>
 
       {/* Closer CTA */}
-      <section style={{ padding: '9rem 4rem', background: 'var(--black)', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
-        <p style={{ fontSize: '0.65rem', letterSpacing: '0.25em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.2)', marginBottom: '1.5rem' }}>Not sure which is right for you?</p>
-        <h2 style={{ fontFamily: 'Cormorant Garamond, serif', fontWeight: 300, fontSize: 'clamp(2.2rem, 4.5vw, 4rem)', color: 'var(--white)', lineHeight: 1.15, marginBottom: '1.25rem' }}>Tell us about your project.<br /><em style={{ fontStyle: 'italic', color: 'var(--film)' }}>We will build the right package together.</em></h2>
-        <p style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.3)', marginBottom: '3rem' }}>No templates. No one-size-fits-all. Just a conversation about what your brand needs.</p>
+      <section className="svc-closer">
+        <p className="svc-closer-eyebrow">Not sure which is right for you?</p>
+        <h2 className="svc-closer-headline">Tell us about your project.<br /><em>We will build the right package together.</em></h2>
+        <p className="svc-closer-sub">No templates. No one-size-fits-all. Just a conversation about what your brand needs.</p>
         <a href="/contact" className="closer-btn">Start a conversation</a>
       </section>
 

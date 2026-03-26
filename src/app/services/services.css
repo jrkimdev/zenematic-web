@@ -1,0 +1,467 @@
+/* ============================================================
+   SERVICES PAGE — Component Styles
+   ============================================================ */
+
+.svc-main {
+  background: var(--black);
+  min-height: 100vh;
+}
+
+/* --- Section Layouts --- */
+
+.svc-tiers-section {
+  padding: 7rem 4rem;
+  background: var(--studio);
+}
+
+.svc-tiers-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.svc-spec-section {
+  padding: 7rem 4rem;
+  background: var(--black);
+}
+
+.svc-spec-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.svc-retainer-section {
+  padding: 5rem 4rem;
+  background: var(--studio);
+  border-top: 0.5px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 0.5px solid rgba(255, 255, 255, 0.05);
+}
+
+.svc-retainer-inner {
+  background: var(--black);
+  border: 0.5px solid rgba(200, 169, 110, 0.15);
+  padding: 4rem;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 5rem;
+  align-items: start;
+}
+
+.svc-retainer-list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.6rem 2rem;
+}
+
+.svc-retainer-price {
+  text-align: right;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.5rem;
+}
+
+.svc-strategy-section {
+  padding: 7rem 4rem;
+  background: var(--black);
+}
+
+.svc-strategy-inner {
+  border: 0.5px solid rgba(255, 255, 255, 0.06);
+  padding: 4rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: start;
+}
+
+.svc-rules-section {
+  padding: 5rem 4rem;
+  background: var(--studio);
+  border-top: 0.5px solid rgba(255, 255, 255, 0.05);
+}
+
+.svc-rules-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+/* --- Tier Cards --- */
+.tier-card {
+  background: var(--studio);
+  padding: 3rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: background 0.4s;
+}
+
+.tier-card:hover {
+  background: #181818;
+}
+
+.tier-card.featured {
+  background: var(--shadow);
+  border-top: 1px solid var(--gold);
+}
+
+.tier-card.featured:hover {
+  background: #222;
+}
+
+.tier-badge {
+  display: inline-block;
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  border: 0.5px solid rgba(200, 169, 110, 0.3);
+  padding: 0.3rem 0.8rem;
+  margin-bottom: 1.5rem;
+  align-self: flex-start;
+}
+
+.tier-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 400;
+  font-size: 2.2rem;
+  color: var(--white);
+  margin-bottom: 0.25rem;
+  line-height: 1;
+}
+
+.tier-price-row {
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  color: rgba(255, 255, 255, 0.35);
+  margin-bottom: 1.75rem;
+  text-transform: uppercase;
+}
+
+.tier-price {
+  font-size: 1.1rem;
+  color: var(--film);
+  font-weight: 400;
+  letter-spacing: 0;
+  margin-right: 0.25rem;
+}
+
+.tier-divider {
+  border: none;
+  border-top: 0.5px solid rgba(255, 255, 255, 0.07);
+  margin-bottom: 1.75rem;
+}
+
+.tier-desc {
+  font-size: 0.83rem;
+  color: rgba(255, 255, 255, 0.45);
+  line-height: 1.8;
+  margin-bottom: 1.75rem;
+  font-weight: 300;
+}
+
+.tier-includes {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-bottom: 2.5rem;
+  flex: 1;
+}
+
+.tier-item {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.5);
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  font-weight: 300;
+}
+
+.tier-dash {
+  color: rgba(200, 169, 110, 0.4);
+  flex-shrink: 0;
+  font-size: 0.7rem;
+}
+
+.tier-cta {
+  display: inline-block;
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 0.5px solid rgba(255, 255, 255, 0.12);
+  padding: 0.8rem 1.5rem;
+  text-align: center;
+  transition: all 0.3s;
+  margin-top: auto;
+  color: rgba(255, 255, 255, 0.5);
+  background: transparent;
+}
+
+.tier-cta.featured {
+  border: none;
+  color: var(--black);
+  background: var(--gold);
+}
+
+/* --- Specialty Cards --- */
+.spec-card {
+  background: var(--black);
+  padding: 2.75rem;
+  transition: background 0.4s;
+}
+
+.spec-card:hover {
+  background: var(--studio);
+}
+
+.spec-cat {
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.75rem;
+  opacity: 0.7;
+}
+
+.spec-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 400;
+  font-size: 1.5rem;
+  color: var(--white);
+  margin-bottom: 0.75rem;
+  line-height: 1.2;
+}
+
+.spec-desc {
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.4);
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+  font-weight: 300;
+}
+
+.spec-price {
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.spec-price.custom {
+  color: var(--gold);
+}
+
+/* --- Retainer --- */
+.retainer-eyebrow {
+  font-size: 0.6rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1.25rem;
+  opacity: 0.7;
+}
+
+.retainer-headline {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: 2.2rem;
+  color: var(--white);
+  margin-bottom: 1rem;
+  line-height: 1.1;
+}
+
+.retainer-desc {
+  font-size: 0.88rem;
+  color: rgba(255, 255, 255, 0.45);
+  line-height: 1.9;
+  margin-bottom: 2rem;
+  font-weight: 300;
+  max-width: 500px;
+}
+
+.retainer-item {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.45);
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  font-weight: 300;
+}
+
+.retainer-dash {
+  color: rgba(200, 169, 110, 0.4);
+  flex-shrink: 0;
+  font-size: 0.7rem;
+}
+
+.retainer-from {
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.25);
+}
+
+.retainer-amount {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: 3.5rem;
+  color: var(--white);
+  line-height: 1;
+}
+
+.retainer-period {
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.25);
+  margin-bottom: 1.5rem;
+}
+
+.retainer-commitment {
+  font-size: 0.65rem;
+  color: rgba(255, 255, 255, 0.2);
+  letter-spacing: 0.08em;
+  margin-bottom: 1.5rem;
+}
+
+/* --- Strategy Add-On --- */
+.strategy-headline {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: 2rem;
+  color: var(--white);
+  margin-bottom: 1.25rem;
+  line-height: 1.2;
+}
+
+.strategy-desc {
+  font-size: 0.88rem;
+  color: rgba(255, 255, 255, 0.45);
+  line-height: 1.9;
+  font-weight: 300;
+  margin-bottom: 1.5rem;
+}
+
+.strategy-price-note {
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.strategy-price-strong {
+  color: var(--film);
+  font-weight: 400;
+  font-size: 0.9rem;
+}
+
+.strategy-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.strategy-item {
+  padding-bottom: 1.5rem;
+  border-bottom: 0.5px solid rgba(255, 255, 255, 0.05);
+}
+
+.strategy-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.strategy-item-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  color: var(--white);
+  margin-bottom: 0.4rem;
+}
+
+.strategy-item-desc {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.35);
+  line-height: 1.7;
+  font-weight: 300;
+}
+
+/* --- Rules --- */
+.rule-card {
+  background: var(--studio);
+  padding: 2rem;
+}
+
+.rule-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.85rem;
+  color: var(--gold);
+  opacity: 0.5;
+  margin-bottom: 0.75rem;
+}
+
+.rule-title {
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--white);
+  margin-bottom: 0.5rem;
+}
+
+.rule-desc {
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.35);
+  line-height: 1.7;
+  font-weight: 300;
+}
+
+/* --- Services Closer --- */
+.svc-closer {
+  padding: 9rem 4rem;
+  background: var(--black);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.svc-closer-eyebrow {
+  font-size: 0.65rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.2);
+  margin-bottom: 1.5rem;
+}
+
+.svc-closer-headline {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: clamp(2.2rem, 4.5vw, 4rem);
+  color: var(--white);
+  line-height: 1.15;
+  margin-bottom: 1.25rem;
+}
+
+.svc-closer-headline em {
+  font-style: italic;
+  color: var(--film);
+}
+
+.svc-closer-sub {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.3);
+  margin-bottom: 3rem;
+}
+
+@media (max-width: 768px) {
+  .svc-closer {
+    padding: 5rem 1.5rem !important;
+  }
+}
