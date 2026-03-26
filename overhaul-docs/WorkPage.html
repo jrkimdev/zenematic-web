@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Work — Zenematic Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Outfit:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0a0a0a;
+    --studio: #141414;
+    --shadow: #1e1e1e;
+    --film: #f0ede6;
+    --white: #ffffff;
+    --gold: #c8a96e;
+    --gold-dim: rgba(200,169,110,0.12);
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--black); color: var(--film); font-family: 'Outfit', sans-serif; font-weight: 300; overflow-x: hidden; }
+
+  /* NAV */
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 4rem; background: linear-gradient(to bottom, rgba(10,10,10,0.95), transparent); }
+  .nav-logo { font-family: 'Outfit', sans-serif; font-weight: 200; font-size: 1.1rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--white); text-decoration: none; }
+  .nav-logo span { color: var(--gold); }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a { font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.55); text-decoration: none; transition: color 0.3s; }
+  .nav-links a:hover, .nav-links a.active { color: var(--white); }
+  .nav-cta { font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); text-decoration: none; border: 0.5px solid rgba(200,169,110,0.4); padding: 0.6rem 1.4rem; transition: all 0.3s; }
+  .nav-cta:hover { background: var(--gold-dim); border-color: var(--gold); }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* PAGE HERO */
+  .page-hero { padding: 13rem 4rem 5rem; background: var(--black); display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 0.5px solid rgba(255,255,255,0.05); }
+  .page-hero-left { }
+  .page-hero-label { font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; opacity: 0; animation: fadeUp 1s ease 0.2s forwards; }
+  .page-hero-headline { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(3.5rem, 7vw, 6rem); line-height: 1.0; color: var(--white); opacity: 0; animation: fadeUp 1s ease 0.4s forwards; }
+  .page-hero-headline em { font-style: italic; color: var(--film); }
+  .page-hero-right { opacity: 0; animation: fadeUp 1s ease 0.6s forwards; }
+  .project-count { font-family: 'Cormorant Garamond', serif; font-size: 5rem; font-weight: 300; color: rgba(255,255,255,0.06); line-height: 1; }
+  .project-count-label { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.2); text-align: right; margin-top: 0.25rem; }
+
+  /* FEATURED PROJECT — BIG 12 */
+  .featured-project { position: relative; overflow: hidden; cursor: pointer; }
+  .featured-thumb { width: 100%; aspect-ratio: 21/9; background: var(--shadow); position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+  .featured-thumb-bg { position: absolute; inset: 0; background: linear-gradient(135deg, #1a1a1a 0%, #111 50%, #1a1a1a 100%); }
+  .featured-thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s ease; }
+  .featured-project:hover .featured-thumb img { transform: scale(1.03); }
+  .featured-placeholder { position: relative; font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.08); text-align: center; line-height: 2; }
+  .featured-overlay { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(10,10,10,0.97) 0%, rgba(10,10,10,0.5) 40%, transparent 100%); padding: 4rem 4rem 3rem; display: flex; justify-content: space-between; align-items: flex-end; }
+  .featured-meta { }
+  .featured-cat { font-size: 0.62rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; opacity: 0.85; }
+  .featured-name { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(2rem, 4vw, 3.5rem); color: var(--white); line-height: 1.1; margin-bottom: 0.75rem; }
+  .featured-desc { font-size: 0.83rem; color: rgba(255,255,255,0.45); line-height: 1.7; max-width: 480px; font-weight: 300; }
+  .featured-right { text-align: right; flex-shrink: 0; padding-left: 2rem; }
+  .featured-badge { display: inline-block; font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; border: 0.5px solid rgba(200,169,110,0.3); color: var(--gold); padding: 0.4rem 1rem; margin-bottom: 1rem; }
+  .featured-type { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.25); }
+  .play-indicator { display: flex; align-items: center; gap: 0.5rem; margin-top: 0.75rem; }
+  .play-dot { width: 0; height: 0; border-style: solid; border-width: 5px 0 5px 9px; border-color: transparent transparent transparent rgba(255,255,255,0.3); }
+  .play-label { font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.3); }
+
+  /* PROJECT GRID */
+  .portfolio { padding: 1px 0 0; background: rgba(255,255,255,0.04); }
+  .portfolio-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; }
+  .project-card { position: relative; overflow: hidden; cursor: pointer; background: var(--black); }
+  .project-card.tall .project-thumb { aspect-ratio: 4/5; }
+  .project-card.short .project-thumb { aspect-ratio: 16/9; }
+  .project-thumb { width: 100%; background: var(--studio); position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+  .project-thumb-bg { position: absolute; inset: 0; background: linear-gradient(135deg, #1a1a1a, #111); }
+  .project-thumb img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s ease; }
+  .project-card:hover .project-thumb img { transform: scale(1.04); }
+  .thumb-placeholder { position: relative; font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.07); text-align: center; line-height: 2.2; padding: 2rem; }
+  .project-overlay { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(10,10,10,0.96) 0%, rgba(10,10,10,0.3) 50%, transparent 100%); padding: 2.5rem 2.25rem 2rem; transition: padding 0.4s; }
+  .project-card:hover .project-overlay { padding-bottom: 2.5rem; }
+  .project-cat { font-size: 0.58rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.5rem; opacity: 0.75; }
+  .project-name { font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: 1.5rem; color: var(--white); line-height: 1.2; margin-bottom: 0.6rem; }
+  .project-tagline { font-size: 0.78rem; color: rgba(255,255,255,0.4); line-height: 1.6; font-weight: 300; max-width: 340px; display: none; transition: opacity 0.3s; }
+  .project-card:hover .project-tagline { display: block; }
+  .project-format { position: absolute; top: 1.25rem; right: 1.25rem; display: flex; align-items: center; gap: 0.4rem; background: rgba(10,10,10,0.7); border: 0.5px solid rgba(255,255,255,0.08); padding: 0.3rem 0.75rem; border-radius: 999px; }
+  .format-dot { width: 5px; height: 5px; border-radius: 50%; background: rgba(255,255,255,0.3); flex-shrink: 0; }
+  .format-dot.video { width: 0; height: 0; border-style: solid; border-width: 3px 0 3px 6px; border-color: transparent transparent transparent rgba(255,255,255,0.4); border-radius: 0; background: none; }
+  .format-label { font-size: 0.58rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.35); }
+
+  /* FULL WIDTH BREAK — STATEMENT */
+  .work-statement { padding: 5rem 4rem; background: var(--studio); border-top: 1px solid rgba(200,169,110,0.08); border-bottom: 1px solid rgba(200,169,110,0.08); display: flex; align-items: center; justify-content: space-between; gap: 4rem; }
+  .ws-left { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-style: italic; font-size: clamp(1.5rem, 3vw, 2.5rem); color: rgba(255,255,255,0.7); line-height: 1.4; max-width: 600px; }
+  .ws-right { flex-shrink: 0; }
+  .ws-stat { text-align: right; }
+  .ws-stat-num { font-family: 'Cormorant Garamond', serif; font-size: 4rem; font-weight: 300; color: var(--white); line-height: 1; }
+  .ws-stat-label { font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.25); margin-top: 0.25rem; }
+
+  /* THIRD ROW PROJECTS */
+  .portfolio-bottom { padding: 1px 0 0; background: rgba(255,255,255,0.04); }
+  .portfolio-bottom-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; }
+  .project-card-sm { position: relative; overflow: hidden; cursor: pointer; background: var(--black); }
+  .project-card-sm .project-thumb { aspect-ratio: 3/4; }
+  .project-card-sm .project-overlay { padding: 1.75rem 1.5rem 1.5rem; }
+  .project-card-sm .project-name { font-size: 1.2rem; }
+
+  /* CLOSER */
+  .closer { padding: 9rem 4rem; background: var(--black); display: flex; flex-direction: column; align-items: center; text-align: center; }
+  .closer-eyebrow { font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(255,255,255,0.2); margin-bottom: 1.5rem; }
+  .closer-headline { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(2.5rem, 5vw, 4.5rem); color: var(--white); line-height: 1.1; margin-bottom: 1.25rem; }
+  .closer-headline em { font-style: italic; color: var(--film); }
+  .closer-sub { font-size: 0.85rem; color: rgba(255,255,255,0.3); margin-bottom: 3rem; }
+  .closer-btn { display: inline-block; font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--black); background: var(--gold); padding: 1rem 2.5rem; text-decoration: none; transition: all 0.3s; }
+  .closer-btn:hover { background: var(--film); }
+
+  /* FOOTER */
+  footer { padding: 3rem 4rem; background: var(--black); border-top: 0.5px solid rgba(255,255,255,0.06); display: flex; justify-content: space-between; align-items: center; }
+  .footer-logo { font-family: 'Outfit', sans-serif; font-weight: 200; font-size: 0.95rem; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(255,255,255,0.3); }
+  .footer-logo span { color: var(--gold); opacity: 0.6; }
+  .footer-links { display: flex; gap: 2rem; list-style: none; }
+  .footer-links a { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.2); text-decoration: none; transition: color 0.3s; }
+  .footer-links a:hover { color: rgba(255,255,255,0.5); }
+  .footer-copy { font-size: 0.62rem; letter-spacing: 0.1em; color: rgba(255,255,255,0.15); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">ZENE<span>MATIC</span></a>
+  <ul class="nav-links">
+    <li><a href="work.html" class="active">Work</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="about.html">About</a></li>
+  </ul>
+  <a href="contact.html" class="nav-cta">Start a project</a>
+</nav>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-hero-left">
+    <p class="page-hero-label">Selected work</p>
+    <h1 class="page-hero-headline">The<br><em>work.</em></h1>
+  </div>
+  <div class="page-hero-right">
+    <p class="project-count">05</p>
+    <p class="project-count-label">Featured projects</p>
+  </div>
+</section>
+
+<!-- FEATURED: BIG 12 MEDIA -->
+<div class="featured-project">
+  <div class="featured-thumb">
+    <div class="featured-thumb-bg"></div>
+    <!-- Replace with: <img src="big12-hero.jpg" alt="Big 12 Media"> -->
+    <div class="featured-placeholder">Replace with your strongest Big 12 tournament image<br>Wide shot · High contrast · Athlete or crowd energy</div>
+  </div>
+  <div class="featured-overlay">
+    <div class="featured-meta">
+      <p class="featured-cat">Sports · Big 12 Media · Kansas City</p>
+      <h2 class="featured-name">Three years.<br>Twelve teams.<br>One story at a time.</h2>
+      <p class="featured-desc">Official tournament media for the Big 12 Conference — three consecutive years of on-the-ground coverage in Kansas City. Athlete portraits, game energy, behind-the-scenes access.</p>
+    </div>
+    <div class="featured-right">
+      <span class="featured-badge">Featured work</span>
+      <p class="featured-type">Photography · Video</p>
+      <div class="play-indicator">
+        <div class="play-dot"></div>
+        <span class="play-label">View reel</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN GRID: WATCHES + FASHION -->
+<div class="portfolio">
+  <div class="portfolio-grid">
+
+    <!-- Luxury Watches -->
+    <div class="project-card tall">
+      <div class="project-thumb">
+        <div class="project-thumb-bg"></div>
+        <!-- Replace with: <img src="watches-hero.jpg" alt="Luxury Watch Editorial"> -->
+        <div class="thumb-placeholder">Replace with your darkest, most cinematic watch macro shot<br>Rolex or AP · Black background · Detail-forward</div>
+      </div>
+      <div class="project-format">
+        <div class="format-dot video"></div>
+        <span class="format-label">Reel + Gallery</span>
+      </div>
+      <div class="project-overlay">
+        <p class="project-cat">Commercial · Luxury · Product</p>
+        <h3 class="project-name">Precision in every frame.</h3>
+        <p class="project-tagline">Cinematic product media for a luxury watch dealer — Rolex and Audemars Piguet. Dark, detailed, premium. Shot to match the standard of the product itself.</p>
+      </div>
+    </div>
+
+    <!-- Fashion Editorial -->
+    <div class="project-card tall">
+      <div class="project-thumb">
+        <div class="project-thumb-bg"></div>
+        <!-- Replace with: <img src="fashion-hero.jpg" alt="Fashion Editorial"> -->
+        <div class="thumb-placeholder">Replace with your strongest fashion editorial frame<br>Studio-lit · Model in motion · Clean background</div>
+      </div>
+      <div class="project-format">
+        <div class="format-dot video"></div>
+        <span class="format-label">Reel</span>
+      </div>
+      <div class="project-overlay">
+        <p class="project-cat">Fashion · Editorial · Lifestyle</p>
+        <h3 class="project-name">A brand that moves.</h3>
+        <p class="project-tagline">Editorial and lookbook production for a KC fashion brand. Studio-lit, direction-led, built to perform on social and in print.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- WORK STATEMENT BREAK -->
+<div class="work-statement">
+  <p class="ws-left">"Every frame is a decision. We make them all with intention."</p>
+  <div class="ws-right">
+    <div class="ws-stat">
+      <p class="ws-stat-num">3</p>
+      <p class="ws-stat-label">Years — Big 12 Media</p>
+    </div>
+  </div>
+</div>
+
+<!-- BOTTOM ROW: EVENTS + COMMERCIAL + DANCE -->
+<div class="portfolio-bottom">
+  <div class="portfolio-bottom-grid">
+
+    <!-- Live Events -->
+    <div class="project-card-sm project-card">
+      <div class="project-thumb">
+        <div class="project-thumb-bg"></div>
+        <!-- Replace with: <img src="events-hero.jpg" alt="Live Event Coverage"> -->
+        <div class="thumb-placeholder">Replace with your best concert or event shot<br>Stage lights · Crowd energy · Atmospheric</div>
+      </div>
+      <div class="project-format">
+        <div class="format-dot video"></div>
+        <span class="format-label">Reel</span>
+      </div>
+      <div class="project-overlay">
+        <p class="project-cat">Events · Live · Culture</p>
+        <h3 class="project-name">The energy doesn't lie.</h3>
+        <p class="project-tagline">Live event and concert coverage — scale, atmosphere, and the moments between the big ones.</p>
+      </div>
+    </div>
+
+    <!-- Commercial Brands -->
+    <div class="project-card-sm project-card">
+      <div class="project-thumb">
+        <div class="project-thumb-bg"></div>
+        <!-- Replace with: <img src="commercial-hero.jpg" alt="Commercial Brand Work"> -->
+        <div class="thumb-placeholder">Replace with your strongest commercial or brand still<br>Product · Business · KC brand</div>
+      </div>
+      <div class="project-format">
+        <div class="format-dot"></div>
+        <span class="format-label">Gallery</span>
+      </div>
+      <div class="project-overlay">
+        <p class="project-cat">Commercial · Brands · KC</p>
+        <h3 class="project-name">Local brands. Cinematic standard.</h3>
+        <p class="project-tagline">Brand and commercial media for KC businesses. Every client gets the same cinematic eye — regardless of size.</p>
+      </div>
+    </div>
+
+    <!-- Dance / Performance -->
+    <div class="project-card-sm project-card">
+      <div class="project-thumb">
+        <div class="project-thumb-bg"></div>
+        <!-- Replace with: <img src="dance-hero.jpg" alt="Dance and Performance"> -->
+        <div class="thumb-placeholder">Replace with a performance or dance frame<br>Stage · Movement · Dramatic lighting</div>
+      </div>
+      <div class="project-format">
+        <div class="format-dot video"></div>
+        <span class="format-label">Reel</span>
+      </div>
+      <div class="project-overlay">
+        <p class="project-cat">Performance · Culture · Movement</p>
+        <h3 class="project-name">Movement is the story.</h3>
+        <p class="project-tagline">Performance and dance documentation — bringing the same cinematic eye that defines everything we shoot to the world that raised us.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- CLOSER -->
+<section class="closer">
+  <p class="closer-eyebrow">Seen enough?</p>
+  <h2 class="closer-headline">Let's make something<br><em>worth remembering.</em></h2>
+  <p class="closer-sub">Tell us about your project and we'll get back to you within 24 hours.</p>
+  <a href="contact.html" class="closer-btn">Start a conversation</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">ZENE<span>MATIC</span></div>
+  <ul class="footer-links">
+    <li><a href="work.html">Work</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="https://instagram.com/zenematic.studio" target="_blank">Instagram</a></li>
+  </ul>
+  <p class="footer-copy">2025 Zenematic Studio — Kansas City</p>
+</footer>
+
+</body>
+</html>

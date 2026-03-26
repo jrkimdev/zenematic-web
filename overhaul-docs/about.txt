@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Services — Zenematic Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Outfit:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0a0a0a;
+    --studio: #141414;
+    --shadow: #1e1e1e;
+    --film: #f0ede6;
+    --white: #ffffff;
+    --gold: #c8a96e;
+    --gold-dim: rgba(200,169,110,0.12);
+  }
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--black); color: var(--film); font-family: 'Outfit', sans-serif; font-weight: 300; overflow-x: hidden; }
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 4rem; background: linear-gradient(to bottom, rgba(10,10,10,0.95), transparent); }
+  .nav-logo { font-family: 'Outfit', sans-serif; font-weight: 200; font-size: 1.1rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--white); text-decoration: none; }
+  .nav-logo span { color: var(--gold); }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a { font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.55); text-decoration: none; transition: color 0.3s; }
+  .nav-links a:hover, .nav-links a.active { color: var(--white); }
+  .nav-cta { font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); text-decoration: none; border: 0.5px solid rgba(200,169,110,0.4); padding: 0.6rem 1.4rem; transition: all 0.3s; }
+  .nav-cta:hover { background: var(--gold-dim); border-color: var(--gold); }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+  .page-hero { padding: 14rem 4rem 7rem; background: var(--black); position: relative; overflow: hidden; }
+  .page-hero::before { content: ''; position: absolute; top: 0; right: 0; width: 50%; height: 100%; background: radial-gradient(ellipse at top right, rgba(200,169,110,0.04) 0%, transparent 70%); pointer-events: none; }
+  .page-hero-label { font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 2rem; opacity: 0; animation: fadeUp 1s ease 0.2s forwards; }
+  .page-hero-headline { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(3rem, 6vw, 5.5rem); line-height: 1.05; color: var(--white); max-width: 760px; margin-bottom: 2rem; opacity: 0; animation: fadeUp 1s ease 0.4s forwards; }
+  .page-hero-headline em { font-style: italic; color: var(--film); }
+  .page-hero-sub { font-size: 0.9rem; color: rgba(255,255,255,0.4); line-height: 1.8; max-width: 520px; font-weight: 300; opacity: 0; animation: fadeUp 1s ease 0.6s forwards; }
+  .section-label { font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 3.5rem; display: flex; align-items: center; gap: 1rem; }
+  .section-label::after { content: ''; flex: 1; max-width: 60px; height: 0.5px; background: rgba(200,169,110,0.3); }
+  .tiers { padding: 7rem 4rem; background: var(--studio); }
+  .tiers-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(255,255,255,0.05); }
+  .tier { background: var(--studio); padding: 3rem 2.5rem; display: flex; flex-direction: column; position: relative; transition: background 0.4s; }
+  .tier:hover { background: #181818; }
+  .tier.featured { background: var(--shadow); border-top: 1px solid var(--gold); }
+  .tier.featured:hover { background: #222; }
+  .tier-badge { display: inline-block; font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); border: 0.5px solid rgba(200,169,110,0.3); padding: 0.3rem 0.8rem; margin-bottom: 1.5rem; align-self: flex-start; }
+  .tier-name { font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: 2.2rem; color: var(--white); margin-bottom: 0.25rem; line-height: 1; }
+  .tier-price { font-size: 0.75rem; letter-spacing: 0.1em; color: rgba(255,255,255,0.35); margin-bottom: 1.75rem; text-transform: uppercase; }
+  .tier-price strong { font-size: 1.1rem; color: var(--film); font-weight: 400; letter-spacing: 0; margin-right: 0.25rem; }
+  .tier-divider { border: none; border-top: 0.5px solid rgba(255,255,255,0.07); margin-bottom: 1.75rem; }
+  .tier-desc { font-size: 0.83rem; color: rgba(255,255,255,0.45); line-height: 1.8; margin-bottom: 1.75rem; font-weight: 300; }
+  .tier-includes { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 2.5rem; flex: 1; }
+  .tier-includes li { font-size: 0.8rem; color: rgba(255,255,255,0.5); display: flex; align-items: baseline; gap: 0.75rem; font-weight: 300; }
+  .tier-includes li::before { content: '—'; color: rgba(200,169,110,0.4); flex-shrink: 0; font-size: 0.7rem; }
+  .tier-cta { display: inline-block; font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.5); text-decoration: none; border: 0.5px solid rgba(255,255,255,0.12); padding: 0.8rem 1.5rem; text-align: center; transition: all 0.3s; margin-top: auto; }
+  .tier-cta:hover { color: var(--white); border-color: rgba(255,255,255,0.3); }
+  .tier.featured .tier-cta { color: var(--black); background: var(--gold); border-color: var(--gold); }
+  .tier.featured .tier-cta:hover { background: var(--film); border-color: var(--film); }
+  .specialty { padding: 7rem 4rem; background: var(--black); }
+  .specialty-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: rgba(255,255,255,0.05); }
+  .spec-card { background: var(--black); padding: 2.75rem; transition: background 0.4s; }
+  .spec-card:hover { background: var(--studio); }
+  .spec-cat { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; opacity: 0.7; }
+  .spec-name { font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: 1.5rem; color: var(--white); margin-bottom: 0.75rem; line-height: 1.2; }
+  .spec-desc { font-size: 0.82rem; color: rgba(255,255,255,0.4); line-height: 1.8; margin-bottom: 1.5rem; font-weight: 300; }
+  .spec-price { font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.3); }
+  .spec-price strong { color: var(--film); font-weight: 400; font-size: 0.85rem; }
+  .spec-price.custom strong { color: var(--gold); }
+  .retainer { padding: 5rem 4rem; background: var(--studio); border-top: 0.5px solid rgba(255,255,255,0.05); border-bottom: 0.5px solid rgba(255,255,255,0.05); }
+  .retainer-inner { background: var(--black); border: 0.5px solid rgba(200,169,110,0.15); padding: 4rem; display: grid; grid-template-columns: 1fr auto; gap: 5rem; align-items: start; }
+  .retainer-label { font-size: 0.6rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.25rem; opacity: 0.7; }
+  .retainer-name { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 2.2rem; color: var(--white); margin-bottom: 1rem; line-height: 1.1; }
+  .retainer-desc { font-size: 0.88rem; color: rgba(255,255,255,0.45); line-height: 1.9; margin-bottom: 2rem; font-weight: 300; max-width: 500px; }
+  .retainer-includes { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem 2rem; }
+  .retainer-includes li { font-size: 0.8rem; color: rgba(255,255,255,0.45); display: flex; align-items: baseline; gap: 0.75rem; font-weight: 300; }
+  .retainer-includes li::before { content: '—'; color: rgba(200,169,110,0.4); flex-shrink: 0; font-size: 0.7rem; }
+  .retainer-right { text-align: right; flex-shrink: 0; display: flex; flex-direction: column; align-items: flex-end; gap: 0.5rem; }
+  .retainer-price-label { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.25); }
+  .retainer-price { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 3.5rem; color: var(--white); line-height: 1; }
+  .retainer-price-sub { font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.25); margin-bottom: 1.5rem; }
+  .retainer-note { font-size: 0.65rem; color: rgba(255,255,255,0.2); letter-spacing: 0.08em; margin-bottom: 1.5rem; }
+  .retainer-cta { display: inline-block; font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--black); background: var(--gold); padding: 0.9rem 2rem; text-decoration: none; transition: all 0.3s; white-space: nowrap; }
+  .retainer-cta:hover { background: var(--film); }
+  .strategy { padding: 7rem 4rem; background: var(--black); }
+  .strategy-inner { border: 0.5px solid rgba(255,255,255,0.06); padding: 4rem; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+  .strategy-left .section-label { margin-bottom: 1.5rem; }
+  .strategy-title { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 2rem; color: var(--white); margin-bottom: 1.25rem; line-height: 1.2; }
+  .strategy-desc { font-size: 0.88rem; color: rgba(255,255,255,0.45); line-height: 1.9; font-weight: 300; margin-bottom: 1.5rem; }
+  .strategy-price { font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.3); }
+  .strategy-price strong { color: var(--film); font-weight: 400; font-size: 0.9rem; }
+  .strategy-items { display: flex; flex-direction: column; gap: 1.5rem; }
+  .strategy-item { padding-bottom: 1.5rem; border-bottom: 0.5px solid rgba(255,255,255,0.05); }
+  .strategy-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .strategy-item-name { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--white); margin-bottom: 0.4rem; }
+  .strategy-item-desc { font-size: 0.8rem; color: rgba(255,255,255,0.35); line-height: 1.7; font-weight: 300; }
+  .rules { padding: 5rem 4rem; background: var(--studio); border-top: 0.5px solid rgba(255,255,255,0.05); }
+  .rules-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(255,255,255,0.04); }
+  .rule-card { background: var(--studio); padding: 2rem; }
+  .rule-num { font-family: 'Cormorant Garamond', serif; font-size: 0.85rem; color: var(--gold); opacity: 0.5; margin-bottom: 0.75rem; }
+  .rule-title { font-size: 0.82rem; font-weight: 500; color: var(--white); margin-bottom: 0.5rem; }
+  .rule-desc { font-size: 0.78rem; color: rgba(255,255,255,0.35); line-height: 1.7; font-weight: 300; }
+  .closer { padding: 9rem 4rem; background: var(--black); display: flex; flex-direction: column; align-items: center; text-align: center; }
+  .closer-eyebrow { font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(255,255,255,0.2); margin-bottom: 1.5rem; }
+  .closer-headline { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(2.2rem, 4.5vw, 4rem); color: var(--white); line-height: 1.15; margin-bottom: 1.25rem; }
+  .closer-headline em { font-style: italic; color: var(--film); }
+  .closer-sub { font-size: 0.85rem; color: rgba(255,255,255,0.3); margin-bottom: 3rem; }
+  .closer-btn { display: inline-block; font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--black); background: var(--gold); padding: 1rem 2.5rem; text-decoration: none; transition: all 0.3s; }
+  .closer-btn:hover { background: var(--film); }
+  footer { padding: 3rem 4rem; background: var(--black); border-top: 0.5px solid rgba(255,255,255,0.06); display: flex; justify-content: space-between; align-items: center; }
+  .footer-logo { font-family: 'Outfit', sans-serif; font-weight: 200; font-size: 0.95rem; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(255,255,255,0.3); }
+  .footer-logo span { color: var(--gold); opacity: 0.6; }
+  .footer-links { display: flex; gap: 2rem; list-style: none; }
+  .footer-links a { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.2); text-decoration: none; transition: color 0.3s; }
+  .footer-links a:hover { color: rgba(255,255,255,0.5); }
+  .footer-copy { font-size: 0.62rem; letter-spacing: 0.1em; color: rgba(255,255,255,0.15); }
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo">ZENE<span>MATIC</span></a>
+  <ul class="nav-links">
+    <li><a href="work.html">Work</a></li>
+    <li><a href="services.html" class="active">Services</a></li>
+    <li><a href="about.html">About</a></li>
+  </ul>
+  <a href="contact.html" class="nav-cta">Start a project</a>
+</nav>
+
+<section class="page-hero">
+  <p class="page-hero-label">What we offer</p>
+  <h1 class="page-hero-headline">Every project starts with <em>intention.</em> Every deliverable is built to last.</h1>
+  <p class="page-hero-sub">Cinematic media studio — Kansas City. We don't just produce content. We build the visual language your brand deserves.</p>
+</section>
+
+<section class="tiers">
+  <p class="section-label">Production packages</p>
+  <div class="tiers-grid">
+    <div class="tier">
+      <p class="tier-name">Frame</p>
+      <p class="tier-price"><strong>From $800</strong> / project</p>
+      <hr class="tier-divider">
+      <p class="tier-desc">A focused, single-deliverable production. One clear intention. Executed with the full Zenematic standard.</p>
+      <ul class="tier-includes">
+        <li>Half-day shoot (4 hours)</li>
+        <li>Photo or short-form video</li>
+        <li>Up to 2 locations</li>
+        <li>15 edited photos or 1 reel</li>
+        <li>5-day delivery</li>
+        <li>1 round of revisions</li>
+      </ul>
+      <a href="contact.html" class="tier-cta">Inquire →</a>
+    </div>
+    <div class="tier featured">
+      <span class="tier-badge">Most popular</span>
+      <p class="tier-name">Feature</p>
+      <p class="tier-price"><strong>From $1,500</strong> / project</p>
+      <hr class="tier-divider">
+      <p class="tier-desc">The full Zenematic experience. Strategy included. Photo and video delivered. This is where brands start to look like brands.</p>
+      <ul class="tier-includes">
+        <li>Full-day shoot (8 hours)</li>
+        <li>Creative strategy session</li>
+        <li>Photo + video deliverables</li>
+        <li>25 edited photos + 2-3 reels</li>
+        <li>Dedicated creative direction</li>
+        <li>7-day delivery</li>
+        <li>2 rounds of revisions</li>
+      </ul>
+      <a href="contact.html" class="tier-cta">Inquire →</a>
+    </div>
+    <div class="tier">
+      <p class="tier-name">Signature</p>
+      <p class="tier-price"><strong>From $3,500</strong> / project</p>
+      <hr class="tier-divider">
+      <p class="tier-desc">A Zenematic-directed campaign. Multi-day. Fully developed. The kind of work that defines how a brand is seen.</p>
+      <ul class="tier-includes">
+        <li>Multi-day production</li>
+        <li>Full creative strategy and direction</li>
+        <li>Campaign-level content suite</li>
+        <li>50+ photos + full video edit</li>
+        <li>Talent and location coordination</li>
+        <li>Priority delivery</li>
+        <li>Unlimited revisions</li>
+      </ul>
+      <a href="contact.html" class="tier-cta">Inquire →</a>
+    </div>
+  </div>
+</section>
+
+<section class="specialty">
+  <p class="section-label">Specialty services</p>
+  <div class="specialty-grid">
+    <div class="spec-card">
+      <p class="spec-cat">Sports and athletics</p>
+      <h3 class="spec-name">Tournament and sports coverage</h3>
+      <p class="spec-desc">On-the-ground sports media for tournaments, games, and athletic brands. Built on three years of Big 12 Media experience. Broadcast-quality, athlete-centered storytelling.</p>
+      <p class="spec-price custom"><strong>Custom pricing</strong> — let's talk scope</p>
+    </div>
+    <div class="spec-card">
+      <p class="spec-cat">Fashion and lifestyle</p>
+      <h3 class="spec-name">Editorial and lookbook production</h3>
+      <p class="spec-desc">Photo and video for fashion brands, product launches, and lifestyle campaigns. Studio-lit, direction-led, built to perform on social and in print. Cinematic by default.</p>
+      <p class="spec-price">Starting <strong>from $1,500</strong> / shoot</p>
+    </div>
+    <div class="spec-card">
+      <p class="spec-cat">Short-form content</p>
+      <h3 class="spec-name">Reels and social content</h3>
+      <p class="spec-desc">Concept to delivery. Each reel is built with a story — not just filmed and edited. Shot to stop the scroll. Optimized for Instagram, TikTok, and YouTube Shorts.</p>
+      <p class="spec-price">Starting <strong>from $800</strong> / reel</p>
+    </div>
+    <div class="spec-card">
+      <p class="spec-cat">Events and live</p>
+      <h3 class="spec-name">Live event coverage</h3>
+      <p class="spec-desc">Concerts, cultural activations, corporate events, showcases. We capture the energy, the detail, and the human moments that happen between the big ones.</p>
+      <p class="spec-price">Starting <strong>from $1,000</strong> / event</p>
+    </div>
+  </div>
+</section>
+
+<section class="retainer">
+  <div class="retainer-inner">
+    <div>
+      <p class="retainer-label">Monthly retainer</p>
+      <h2 class="retainer-name">Zenematic on demand.</h2>
+      <p class="retainer-desc">Your brand, covered every month. Consistent cinematic content — planned, shot, and delivered on a recurring schedule. No briefs from scratch each time. We know your brand.</p>
+      <ul class="retainer-includes">
+        <li>2 shoot days per month</li>
+        <li>Monthly strategy session</li>
+        <li>30+ edited photos</li>
+        <li>4 reels per month</li>
+        <li>Priority scheduling</li>
+        <li>Dedicated creative direction</li>
+      </ul>
+    </div>
+    <div class="retainer-right">
+      <p class="retainer-price-label">Starting from</p>
+      <p class="retainer-price">$2,500</p>
+      <p class="retainer-price-sub">per month</p>
+      <p class="retainer-note">3-month minimum commitment</p>
+      <a href="contact.html" class="retainer-cta">Let's talk →</a>
+    </div>
+  </div>
+</section>
+
+<section class="strategy">
+  <div class="strategy-inner">
+    <div class="strategy-left">
+      <p class="section-label">Add-on service</p>
+      <h2 class="strategy-title">Creative strategy and direction</h2>
+      <p class="strategy-desc">Not just what to shoot — but what to say, how to say it, and why it will land. Strategy sessions can be added to any package or booked standalone.</p>
+      <p class="strategy-price">Standalone sessions <strong>from $350</strong></p>
+    </div>
+    <div class="strategy-items">
+      <div class="strategy-item">
+        <p class="strategy-item-name">Brand story session</p>
+        <p class="strategy-item-desc">We find the narrative at the core of your brand — who you are, who you're talking to, and what you want them to feel — before a single frame is shot.</p>
+      </div>
+      <div class="strategy-item">
+        <p class="strategy-item-name">Content planning</p>
+        <p class="strategy-item-desc">A 30-day content roadmap built around your goals. What to post, when, on which platform, and why — with a clear visual direction for each piece.</p>
+      </div>
+      <div class="strategy-item">
+        <p class="strategy-item-name">Creative direction</p>
+        <p class="strategy-item-desc">Visual language, mood board, shot list, and on-set direction. We take the creative lead so you can focus on being in the work, not managing it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="rules">
+  <div class="rules-grid">
+    <div class="rule-card">
+      <p class="rule-num">01</p>
+      <p class="rule-title">50% deposit to book</p>
+      <p class="rule-desc">Balance due on delivery. No deposit, no confirmed date. This protects your time and ours.</p>
+    </div>
+    <div class="rule-card">
+      <p class="rule-num">02</p>
+      <p class="rule-title">Commercial usage</p>
+      <p class="rule-desc">Running our work as paid advertising? Add 40% to the project rate. Your content working harder deserves fair compensation.</p>
+    </div>
+    <div class="rule-card">
+      <p class="rule-num">03</p>
+      <p class="rule-title">Rush delivery</p>
+      <p class="rule-desc">Need it in under 48 hours? Rush delivery adds 30% to the editing rate. We will make it happen.</p>
+    </div>
+    <div class="rule-card">
+      <p class="rule-num">04</p>
+      <p class="rule-title">Travel and location</p>
+      <p class="rule-desc">Projects outside KC billed at $0.67/mile plus accommodation if overnight. We will go anywhere the story takes us.</p>
+    </div>
+    <div class="rule-card">
+      <p class="rule-num">05</p>
+      <p class="rule-title">Revisions policy</p>
+      <p class="rule-desc">Revisions included per tier. Additional rounds at $100/hr. We get it right — but scope changes cost time.</p>
+    </div>
+    <div class="rule-card">
+      <p class="rule-num">06</p>
+      <p class="rule-title">No discounts</p>
+      <p class="rule-desc">We do not discount. If the budget is tight, we adjust scope. The standard never changes — only the deliverables.</p>
+    </div>
+  </div>
+</section>
+
+<section class="closer">
+  <p class="closer-eyebrow">Not sure which is right for you?</p>
+  <h2 class="closer-headline">Tell us about your project.<br><em>We will build the right package together.</em></h2>
+  <p class="closer-sub">No templates. No one-size-fits-all. Just a conversation about what your brand needs.</p>
+  <a href="contact.html" class="closer-btn">Start a conversation</a>
+</section>
+
+<footer>
+  <div class="footer-logo">ZENE<span>MATIC</span></div>
+  <ul class="footer-links">
+    <li><a href="work.html">Work</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="https://instagram.com/zenematic.studio" target="_blank">Instagram</a></li>
+  </ul>
+  <p class="footer-copy">2025 Zenematic Studio — Kansas City</p>
+</footer>
+</body>
+</html>

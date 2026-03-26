@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — Zenematic Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Outfit:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0a0a0a;
+    --studio: #141414;
+    --shadow: #1e1e1e;
+    --film: #f0ede6;
+    --white: #ffffff;
+    --gold: #c8a96e;
+    --gold-dim: rgba(200,169,110,0.12);
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--black); color: var(--film); font-family: 'Outfit', sans-serif; font-weight: 300; overflow-x: hidden; }
+
+  /* NAV */
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 4rem; background: linear-gradient(to bottom, rgba(10,10,10,0.95), transparent); }
+  .nav-logo { font-family: 'Outfit', sans-serif; font-weight: 200; font-size: 1.1rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--white); text-decoration: none; }
+  .nav-logo span { color: var(--gold); }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a { font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.55); text-decoration: none; transition: color 0.3s; }
+  .nav-links a:hover, .nav-links a.active { color: var(--white); }
+  .nav-cta { font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); text-decoration: none; border: 0.5px solid rgba(200,169,110,0.4); padding: 0.6rem 1.4rem; transition: all 0.3s; }
+  .nav-cta:hover { background: var(--gold-dim); border-color: var(--gold); }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* MAIN LAYOUT */
+  .contact-wrapper {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  /* LEFT PANEL */
+  .contact-left {
+    background: var(--studio);
+    padding: 12rem 4rem 5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-right: 0.5px solid rgba(255,255,255,0.05);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .contact-left::before {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 100%;
+    height: 40%;
+    background: radial-gradient(ellipse at bottom left, rgba(200,169,110,0.04) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .left-top { }
+
+  .contact-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 2rem;
+    opacity: 0;
+    animation: fadeUp 1s ease 0.2s forwards;
+  }
+
+  .contact-headline {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(3rem, 5vw, 5rem);
+    line-height: 1.05;
+    color: var(--white);
+    margin-bottom: 2rem;
+    opacity: 0;
+    animation: fadeUp 1s ease 0.4s forwards;
+  }
+
+  .contact-headline em { font-style: italic; color: var(--film); }
+
+  .contact-sub {
+    font-size: 0.88rem;
+    color: rgba(255,255,255,0.4);
+    line-height: 1.9;
+    max-width: 380px;
+    font-weight: 300;
+    margin-bottom: 3.5rem;
+    opacity: 0;
+    animation: fadeUp 1s ease 0.6s forwards;
+  }
+
+  /* CONTACT INFO ITEMS */
+  .contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    opacity: 0;
+    animation: fadeUp 1s ease 0.8s forwards;
+  }
+
+  .info-item {
+    padding: 1.25rem 0;
+    border-bottom: 0.5px solid rgba(255,255,255,0.05);
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+
+  .info-item:first-child { border-top: 0.5px solid rgba(255,255,255,0.05); }
+
+  .info-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.25);
+  }
+
+  .info-value {
+    font-size: 0.9rem;
+    color: var(--film);
+    font-weight: 300;
+    letter-spacing: 0.02em;
+  }
+
+  .info-value a {
+    color: var(--film);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  .info-value a:hover { color: var(--gold); }
+
+  /* SOCIAL ROW */
+  .social-row {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 3rem;
+    opacity: 0;
+    animation: fadeUp 1s ease 1s forwards;
+  }
+
+  .social-link {
+    font-size: 0.65rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+    text-decoration: none;
+    transition: color 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .social-link::after { content: '↗'; font-size: 0.6rem; }
+  .social-link:hover { color: var(--gold); }
+
+  /* RIGHT PANEL — FORM */
+  .contact-right {
+    background: var(--black);
+    padding: 12rem 4rem 5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .form-header {
+    margin-bottom: 2.5rem;
+    opacity: 0;
+    animation: fadeUp 1s ease 0.4s forwards;
+  }
+
+  .form-header-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.75rem;
+    opacity: 0.7;
+  }
+
+  .form-header-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: 1.75rem;
+    color: var(--white);
+    line-height: 1.2;
+  }
+
+  /* FORM */
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    opacity: 0;
+    animation: fadeUp 1s ease 0.6s forwards;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+  }
+
+  .form-field {
+    display: flex;
+    flex-direction: column;
+    border-bottom: 0.5px solid rgba(255,255,255,0.07);
+    padding: 1.25rem 0;
+    gap: 0.4rem;
+    transition: border-color 0.3s;
+  }
+
+  .form-field:focus-within {
+    border-bottom-color: rgba(200,169,110,0.4);
+  }
+
+  .form-field label {
+    font-size: 0.58rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.25);
+    transition: color 0.3s;
+  }
+
+  .form-field:focus-within label { color: var(--gold); }
+
+  .form-field input,
+  .form-field textarea,
+  .form-field select {
+    background: transparent;
+    border: none;
+    outline: none;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 300;
+    color: var(--film);
+    padding: 0;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+
+  .form-field input::placeholder,
+  .form-field textarea::placeholder { color: rgba(255,255,255,0.15); font-size: 0.85rem; }
+
+  .form-field textarea { resize: none; height: 90px; line-height: 1.7; }
+
+  .form-field select { cursor: pointer; }
+  .form-field select option { background: var(--shadow); color: var(--film); }
+
+  /* SELECT ARROW */
+  .select-wrapper { position: relative; }
+  .select-wrapper::after {
+    content: '↓';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.7rem;
+    color: rgba(255,255,255,0.25);
+    pointer-events: none;
+  }
+
+  /* BUDGET ROW */
+  .form-field.full { border-bottom: 0.5px solid rgba(255,255,255,0.07); }
+
+  /* SUBMIT */
+  .form-submit {
+    margin-top: 2.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .submit-note {
+    font-size: 0.72rem;
+    color: rgba(255,255,255,0.2);
+    line-height: 1.6;
+    letter-spacing: 0.03em;
+  }
+
+  .submit-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--black);
+    background: var(--gold);
+    border: none;
+    padding: 1rem 2rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    white-space: nowrap;
+  }
+
+  .submit-btn:hover { background: var(--film); }
+  .submit-btn::after { content: '→'; font-size: 0.9rem; }
+
+  /* RESPONSE NOTE */
+  .response-note {
+    margin-top: 1.25rem;
+    font-size: 0.62rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.15);
+    text-align: right;
+  }
+
+  /* FOOTER */
+  footer { padding: 3rem 4rem; background: var(--black); border-top: 0.5px solid rgba(255,255,255,0.06); display: flex; justify-content: space-between; align-items: center; }
+  .footer-logo { font-family: 'Outfit', sans-serif; font-weight: 200; font-size: 0.95rem; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(255,255,255,0.3); }
+  .footer-logo span { color: var(--gold); opacity: 0.6; }
+  .footer-links { display: flex; gap: 2rem; list-style: none; }
+  .footer-links a { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.2); text-decoration: none; transition: color 0.3s; }
+  .footer-links a:hover { color: rgba(255,255,255,0.5); }
+  .footer-copy { font-size: 0.62rem; letter-spacing: 0.1em; color: rgba(255,255,255,0.15); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">ZENE<span>MATIC</span></a>
+  <ul class="nav-links">
+    <li><a href="work.html">Work</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="about.html">About</a></li>
+  </ul>
+  <a href="#" class="nav-cta active">Start a project</a>
+</nav>
+
+<!-- CONTACT MAIN -->
+<div class="contact-wrapper">
+
+  <!-- LEFT: INFO -->
+  <div class="contact-left">
+    <div class="left-top">
+      <p class="contact-label">Get in touch</p>
+      <h1 class="contact-headline">Let's make<br>something<br><em>cinematic.</em></h1>
+      <p class="contact-sub">Tell us about your project. Whether you have a full brief or just an idea — we want to hear it. We'll get back to you within 24 hours.</p>
+
+      <div class="contact-info">
+        <div class="info-item">
+          <span class="info-label">Email</span>
+          <span class="info-value"><a href="mailto:hello@zenematic.studio">hello@zenematic.studio</a></span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">Based in</span>
+          <span class="info-value">Kansas City, Missouri</span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">Available</span>
+          <span class="info-value">Worldwide</span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">Response time</span>
+          <span class="info-value">Within 24 hours</span>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="social-row">
+        <a href="https://instagram.com/zenematic.studio" target="_blank" class="social-link">Instagram</a>
+        <a href="https://vimeo.com" target="_blank" class="social-link">Vimeo</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT: FORM -->
+  <div class="contact-right">
+    <div class="form-header">
+      <p class="form-header-label">Start a project</p>
+      <h2 class="form-header-title">Tell us what you're<br>working on.</h2>
+    </div>
+
+    <form class="contact-form" action="#" method="POST">
+
+      <div class="form-row">
+        <div class="form-field">
+          <label for="first-name">First name</label>
+          <input type="text" id="first-name" name="first_name" placeholder="Your first name" required>
+        </div>
+        <div class="form-field" style="padding-left: 1.5rem;">
+          <label for="last-name">Last name</label>
+          <input type="text" id="last-name" name="last_name" placeholder="Your last name" required>
+        </div>
+      </div>
+
+      <div class="form-field">
+        <label for="email">Email address</label>
+        <input type="email" id="email" name="email" placeholder="your@email.com" required>
+      </div>
+
+      <div class="form-field">
+        <label for="company">Company / Brand</label>
+        <input type="text" id="company" name="company" placeholder="Who are we working with?">
+      </div>
+
+      <div class="form-field">
+        <label for="project-type">Project type</label>
+        <div class="select-wrapper">
+          <select id="project-type" name="project_type" required>
+            <option value="" disabled selected>What are you looking for?</option>
+            <option value="photo">Photo production</option>
+            <option value="video">Video production</option>
+            <option value="reels">Reels / short-form content</option>
+            <option value="event">Event coverage</option>
+            <option value="sports">Sports coverage</option>
+            <option value="fashion">Fashion / editorial</option>
+            <option value="retainer">Monthly content retainer</option>
+            <option value="strategy">Creative strategy</option>
+            <option value="other">Something else</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-field">
+        <label for="budget">Budget range</label>
+        <div class="select-wrapper">
+          <select id="budget" name="budget" required>
+            <option value="" disabled selected>Approximate investment</option>
+            <option value="under1k">Under $1,000</option>
+            <option value="1k-2.5k">$1,000 – $2,500</option>
+            <option value="2.5k-5k">$2,500 – $5,000</option>
+            <option value="5k-10k">$5,000 – $10,000</option>
+            <option value="10k+">$10,000+</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-field full">
+        <label for="message">Tell us about your project</label>
+        <textarea id="message" name="message" placeholder="What are you trying to create? Share as much or as little as you'd like — we'll figure out the rest together." required></textarea>
+      </div>
+
+      <div class="form-submit">
+        <p class="submit-note">We respond within 24 hours.<br>No templates. Just a real conversation.</p>
+        <button type="submit" class="submit-btn">Send it</button>
+      </div>
+      <p class="response-note">zenematic.studio · Kansas City · Available worldwide</p>
+
+    </form>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">ZENE<span>MATIC</span></div>
+  <ul class="footer-links">
+    <li><a href="work.html">Work</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="https://instagram.com/zenematic.studio" target="_blank">Instagram</a></li>
+  </ul>
+  <p class="footer-copy">2025 Zenematic Studio — Kansas City</p>
+</footer>
+
+</body>
+</html>
